@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Core;
+use App\Zendesk\ApiFactory;
+use App\Zendesk\ClientBuilder;
+use App\Http\Controllers\Controller;
+
 class BasicController extends Controller
 {
     /**
@@ -16,7 +21,15 @@ class BasicController extends Controller
 
     public function index()
     {
-        $client = new \Guzzle\Service\Client('http://api.github.com/users/');
-        dd($client);
+        $builder = new ClientBuilder();
+        $client = $builder->createClientV2();
+        $apiFactory = new ApiFactory($client);
+        //Fetch Users
+        $userApi = $apiFactory->userApi();
+        $users = $userApi->users();
+        //Fetch organizations
+        // $userApi = $apiFactory->organizationApi();
+        // $users = $userApi->organizations();
+        dd($users);
     }
 }
