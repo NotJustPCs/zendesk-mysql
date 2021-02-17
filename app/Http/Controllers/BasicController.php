@@ -28,8 +28,9 @@ class BasicController extends Controller
         $userApi = $apiFactory->userApi();
         $users = $userApi->users();
         //Fetch organizations
-        // $userApi = $apiFactory->organizationApi();
-        // $users = $userApi->organizations();
-        dd($users);
+        $userApi = $apiFactory->organizationApi();
+        $organizations = $userApi->organizations();
+
+        dd($organizations);
     }
 }

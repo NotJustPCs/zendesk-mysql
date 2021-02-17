@@ -21,7 +21,7 @@ class ApiFactory
     {
         return new User($this->client);
     }
-    public function organizationApi(): User
+    public function organizationApi(): Organization
     {
         return new Organization($this->client);
     }
