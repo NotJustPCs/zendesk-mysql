@@ -15,7 +15,10 @@ class UserFields extends Migration
     {
         Schema::create('user_fields', function (Blueprint $table) {
             $table->bigInteger('user_id');
-            $table->text('fields')->nullable();
+            $table->string('asset_database_user_id')->nullable();
+            $table->string('irregular_prepaid_hours')->nullable();
+            $table->string('SN_User_Data')->nullable();
+            $table->string('xero_contact_id')->nullable();
         });
     }
 

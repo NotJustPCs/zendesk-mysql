@@ -47,14 +47,14 @@ class User implements ApiInterface
             $tags = $user['tags'];
             unset($user['tags']);
             $this->storeTags($tags, $userId);
-            //Store user custom fields
+            //Store user fields
             $userFields = $user['user_fields'];
             unset($user['user_fields']);
             $this->storeUserFields($userFields, $userId);
             //Store user photo
             $photo = $user['photo'];
             unset($user['photo']);
-            // $this->storeUserPhoto($photo, $userId);
+            $this->storeUserPhoto($photo, $userId);
             //Store user
             $this->storeUsers($user);
         }
@@ -73,7 +73,13 @@ class User implements ApiInterface
     private function storeUserFields($userFields, $userId)
     {
         if (is_array($userFields) && !empty($userFields)) {
-            DB::table('user_fields')->insert(['user_id' => $userId, 'fields' => json_encode($userFields)]);
+            DB::table('user_fields')->insert([
+                'user_id' => $userId,
+                'asset_database_user_id' => $userFields['asset_database_user_id'],
+                'irregular_prepaid_hours' => $userFields['irregular_prepaid_hours'],
+                'SN_User_Data' => $userFields['SN_User_Data'],
+                'xero_contact_id' => $userFields['xero_contact_id'],
+            ]);
         }
     }
 
@@ -97,7 +103,9 @@ class User implements ApiInterface
     private function storeUserPhoto($photo, $userId)
     {
         if (is_array($photo) && !empty($photo)) {
-            DB::table('user_photos')->insert(['user_id' => $userId, 'photo' => json_encode($photo)]);
+            DB::table('user_photos')->insert(
+                ['user_id' => $userId, 'url' => $photo['url']]
+            );
         }
     }
 }

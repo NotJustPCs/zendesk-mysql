@@ -15,7 +15,7 @@ class UserPhotos extends Migration
     {
         Schema::create('user_photos', function (Blueprint $table) {
             $table->bigInteger('user_id');
-            $table->string('photo')->nullable();
+            $table->text('url')->nullable();
         });
     }
 
