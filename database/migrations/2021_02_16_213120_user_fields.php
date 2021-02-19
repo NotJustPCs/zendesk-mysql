@@ -17,8 +17,8 @@ class UserFields extends Migration
             $table->bigInteger('user_id');
             $table->string('asset_database_user_id')->nullable();
             $table->string('irregular_prepaid_hours')->nullable();
-            $table->string('SN_User_Data')->nullable();
-            $table->string('xero_contact_id')->nullable();
+            $table->longText('SN_User_Data')->nullable();
+            $table->text('xero_contact_id')->nullable();
         });
     }
 
