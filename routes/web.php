@@ -13,7 +13,7 @@
 |
 */
 
-$router->get('/', [
+$router->get('/zendesk', [
     'as' => 'index', 'uses' => 'ZendeskController@index'
 ]);
 $router->get('/key', function () {

@@ -79,7 +79,21 @@ class Organization implements ApiInterface
     private function storeOrganizationFields($organizationFields, $organizationId)
     {
         if (is_array($organizationFields) && !empty($organizationFields)) {
-            DB::table('organization_fields')->insert(['organization_id' => $organizationId, 'fields' => json_encode($organizationFields)]);
+            DB::table('organization_fields')->insert([
+                'organization_id' => $organizationId,
+                '1password_vault_id' => $organizationFields['1password_vault_id'],
+                'asset_database_company_id' => $organizationFields['asset_database_company_id'],
+                'gandi_tag' => $organizationFields['gandi_tag'],
+                'irregular_prepaid_hours' => $organizationFields['irregular_prepaid_hours'],
+                'metis_customer_id' => $organizationFields['metis_customer_id'],
+                'monthly_billing_plan' => $organizationFields['monthly_billing_plan'],
+                'monthly_hours_warning' => $organizationFields['monthly_hours_warning'],
+                'monthly_prepaid_hours' => $organizationFields['monthly_prepaid_hours'],
+                'process_st_tag' => $organizationFields['process_st_tag'],
+                'SN_Org_Data' => $organizationFields['SN_Org_Data'],
+                'time_report_link' => $organizationFields['time_report_link'],
+                'xero_contact_id' => $organizationFields['xero_contact_id'],
+            ]);
         }
     }
 
