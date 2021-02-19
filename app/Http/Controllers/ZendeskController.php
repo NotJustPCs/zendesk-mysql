@@ -26,15 +26,19 @@ class ZendeskController extends Controller
         $client = $builder->createClientV2();
         $apiFactory = new ApiFactory($client);
         //Fetch Users
-        // $userApi = $apiFactory->userApi();
-        // $users = $userApi->users();
+        $userApi = $apiFactory->userApi();
+        $users = $userApi->users();
         //Fetch organizations
         $organizationApi = $apiFactory->organizationApi();
         $organizations = $organizationApi->organizations();
         //Fetch Tickets
-        // $ticketApi = $apiFactory->ticketApi();
-        // $tickets = $ticketApi->tickets();
+        $ticketApi = $apiFactory->ticketApi();
+        $tickets = $ticketApi->tickets();
 
-        dd($organizations);
+        return response()->json([
+            'user_count' => count($users),
+            'organization_count' => count($organizations),
+            'ticket_count' => count($tickets),
+        ]);
     }
 }
