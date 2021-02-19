@@ -5,6 +5,7 @@ namespace App\Zendesk;
 
 use App\Zendesk\Client;
 use App\Zendesk\Api\User;
+use App\Zendesk\Api\Ticket;
 use App\Zendesk\Api\Organization;
 
 
@@ -24,5 +25,9 @@ class ApiFactory
     public function organizationApi(): Organization
     {
         return new Organization($this->client);
+    }
+    public function ticketApi(): Ticket
+    {
+        return new Ticket($this->client);
     }
 }

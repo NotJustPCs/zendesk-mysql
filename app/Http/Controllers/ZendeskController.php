@@ -7,7 +7,7 @@ use App\Zendesk\ApiFactory;
 use App\Zendesk\ClientBuilder;
 use App\Http\Controllers\Controller;
 
-class BasicController extends Controller
+class ZendeskController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,6 +21,7 @@ class BasicController extends Controller
 
     public function index()
     {
+
         $builder = new ClientBuilder();
         $client = $builder->createClientV2();
         $apiFactory = new ApiFactory($client);
@@ -28,9 +29,12 @@ class BasicController extends Controller
         $userApi = $apiFactory->userApi();
         $users = $userApi->users();
         //Fetch organizations
-        $userApi = $apiFactory->organizationApi();
-        $organizations = $userApi->organizations();
+        // $organizationApi = $apiFactory->organizationApi();
+        // $organizations = $organizationApi->organizations();
+        //Fetch Tickets
+        // $ticketApi = $apiFactory->ticketApi();
+        // $tickets = $ticketApi->tickets();
 
-        dd($organizations);
+        dd($users);
     }
 }

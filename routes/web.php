@@ -14,7 +14,7 @@
 */
 
 $router->get('/', [
-    'as' => 'index', 'uses' => 'BasicController@index'
+    'as' => 'index', 'uses' => 'ZendeskController@index'
 ]);
 $router->get('/key', function () {
     return \Illuminate\Support\Str::random(32);
