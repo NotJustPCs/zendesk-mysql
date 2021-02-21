@@ -26,6 +26,6 @@ class OrganizationTags extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('organization_tags');
     }
 }

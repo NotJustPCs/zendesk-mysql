@@ -13,7 +13,7 @@ class TicketVia extends Migration
      */
     public function up()
     {
-        Schema::create('ticket_ticket_via', function (Blueprint $table) {
+        Schema::create('ticket_via', function (Blueprint $table) {
             $table->bigInteger('ticket_id')->nullable();
             $table->string('via')->nullable();
         });
@@ -26,6 +26,6 @@ class TicketVia extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('ticket_via');
     }
 }

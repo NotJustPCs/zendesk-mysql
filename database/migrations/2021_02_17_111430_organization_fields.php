@@ -27,6 +27,7 @@ class OrganizationFields extends Migration
             $table->longText('SN_Org_Data')->nullable();
             $table->text('time_report_link')->nullable();
             $table->text('xero_contact_id')->nullable();
+            $table->text('clockify_client_id')->nullable();
         });
     }
 
@@ -37,6 +38,6 @@ class OrganizationFields extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('organization_fields');
     }
 }

@@ -26,6 +26,6 @@ class TicketSharingAgreementIds extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('ticket_sharing_agreement_ids');
     }
 }

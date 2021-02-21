@@ -26,6 +26,6 @@ class TicketFollowerIds extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('ticket_follower_ids');
     }
 }

@@ -26,6 +26,6 @@ class UserPhotos extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('user_photos');
     }
 }

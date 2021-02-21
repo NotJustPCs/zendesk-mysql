@@ -40,7 +40,7 @@ class Ticket implements ApiInterface
             //Store ticket via
             $via = $ticket['via'];
             unset($ticket['via']);
-            // $this->storeVia($via, $ticketId);
+            $this->storeVia($via, $ticketId);
             //Store collaborator ids
             $collaboratorIds = $ticket['collaborator_ids'];
             unset($ticket['collaborator_ids']);
@@ -76,7 +76,7 @@ class Ticket implements ApiInterface
             //store satisfaction rating
             $satisfactionRating = $ticket['satisfaction_rating'];
             unset($ticket['satisfaction_rating']);
-            // $this->storeSatisfactionRating($satisfactionRating, $ticketId);
+            $this->storeSatisfactionRating($satisfactionRating, $ticketId);
             //Store ticket
             $this->storeTicket($ticket);
         }
@@ -97,8 +97,33 @@ class Ticket implements ApiInterface
     private function storeVia($via, $ticketId)
     {
         if (!empty($via)) {
-
+            //tore source
+            $source = $via['source'];
+            unset($via['source']);
+            $this->storeSource($source, $ticketId);
             DB::table('ticket_via')->insert(['ticket_id' => $ticketId, 'via' => $via['channel']]);
+        }
+    }
+
+    private function storeSource($source, $ticketId)
+    {
+        if (
+            !empty($source)
+            && !empty($source['from']['address'])
+            && !empty($source['from']['name'])
+            && !empty($source['to']['address'])
+            && !empty($source['to']['address'])
+        ) {
+            DB::table('ticket_via_source')->insert(
+                [
+                    'ticket_id' => $ticketId,
+                    'from_address' => !empty($source['from']['address']) ? $source['from']['address'] : null,
+                    'from_name' => !empty($source['from']['name']) ? $source['from']['name'] : null,
+                    'to_address' => !empty($source['to']['address']) ? $source['to']['address'] : null,
+                    'to_name' => !empty($source['to']['name']) ? $source['to']['name'] : null,
+                    'rel' => !empty($source['rel']) ? $source['rel'] : null
+                ]
+            );
         }
     }
 
@@ -177,5 +202,19 @@ class Ticket implements ApiInterface
     private function storeTicket($ticket)
     {
         DB::table('tickets')->insert($ticket);
+    }
+
+    private function storeSatisfactionRating($satisfactionRating, $ticketId)
+    {
+        if (!empty($satisfactionRating)) {
+            DB::table('ticket_satisfaction_rating')->insert(
+                [
+                    'ticket_id' => $ticketId,
+                    'comment' => $satisfactionRating['comment'],
+                    'id' => $satisfactionRating['id'],
+                    'score' => $satisfactionRating['score']
+                ]
+            );
+        }
     }
 }

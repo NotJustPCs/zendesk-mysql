@@ -26,6 +26,6 @@ class OrganizationDomainNames extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('organization_domain_names');
     }
 }

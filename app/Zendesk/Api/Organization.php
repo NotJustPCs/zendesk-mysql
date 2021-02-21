@@ -93,6 +93,7 @@ class Organization implements ApiInterface
                 'SN_Org_Data' => $organizationFields['SN_Org_Data'],
                 'time_report_link' => $organizationFields['time_report_link'],
                 'xero_contact_id' => $organizationFields['xero_contact_id'],
+                'clockify_client_id' => $organizationFields['clockify_client_id'],
             ]);
         }
     }

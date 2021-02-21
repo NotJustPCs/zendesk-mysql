@@ -26,6 +26,6 @@ class TicketEmailCcIds extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('ticket_email_cc_ids');
     }
 }

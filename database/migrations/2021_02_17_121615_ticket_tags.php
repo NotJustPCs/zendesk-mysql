@@ -26,6 +26,6 @@ class TicketTags extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('ticket_tags');
     }
 }

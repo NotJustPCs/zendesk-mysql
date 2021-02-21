@@ -27,6 +27,6 @@ class TicketCustomFields extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('ticket_custom_fields');
     }
 }

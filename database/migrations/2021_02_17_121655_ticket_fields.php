@@ -27,6 +27,6 @@ class TicketFields extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('ticket_fields');
     }
 }
