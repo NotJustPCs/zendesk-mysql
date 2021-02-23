@@ -7,7 +7,7 @@ Comissioned by @foshdafosh
 
 ## Installation:
 * Run 'composer install'
-* Run 'php artisan migrate:fresh'
+* Run 'php artisan migrate'
 * Create and edit .env as appropriate
 * Visit yourappdomain.com/key
 * Copy string into .env APP_KEY= variable
