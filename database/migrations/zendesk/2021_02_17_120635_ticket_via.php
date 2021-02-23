@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UserPhotos extends Migration
+class TicketVia extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class UserPhotos extends Migration
      */
     public function up()
     {
-        Schema::create('user_photos', function (Blueprint $table) {
-            $table->bigInteger('user_id');
-            $table->text('url')->nullable();
+        Schema::create('zd_ticket_via', function (Blueprint $table) {
+            $table->bigInteger('ticket_id')->nullable();
+            $table->string('via')->nullable();
         });
     }
 
@@ -26,6 +26,6 @@ class UserPhotos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_photos');
+        Schema::dropIfExists('zd_ticket_via');
     }
 }

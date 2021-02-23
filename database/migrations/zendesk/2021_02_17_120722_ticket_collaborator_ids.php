@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class OrganizationDomainNames extends Migration
+class TicketCollaboratorIds extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class OrganizationDomainNames extends Migration
      */
     public function up()
     {
-        Schema::create('organization_domain_names', function (Blueprint $table) {
-            $table->bigInteger('organization_id');
-            $table->string('domain')->nullable();
+        Schema::create('zd_ticket_collaborator_ids', function (Blueprint $table) {
+            $table->bigInteger('ticket_id')->nullable();
+            $table->bigInteger('collaborator_id')->nullable();
         });
     }
 
@@ -26,6 +26,6 @@ class OrganizationDomainNames extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organization_domain_names');
+        Schema::dropIfExists('zd_ticket_collaborator_ids');
     }
 }

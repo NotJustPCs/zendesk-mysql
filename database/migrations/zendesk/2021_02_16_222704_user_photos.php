@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TicketCustomFields extends Migration
+class UserPhotos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class TicketCustomFields extends Migration
      */
     public function up()
     {
-        Schema::create('ticket_custom_fields', function (Blueprint $table) {
-            $table->bigInteger('ticket_id')->nullable();
-            $table->bigInteger('id')->nullable();
-            $table->longText('value')->nullable();
+        Schema::create('zd_user_photos', function (Blueprint $table) {
+            $table->bigInteger('user_id');
+            $table->text('url')->nullable();
         });
     }
 
@@ -27,6 +26,6 @@ class TicketCustomFields extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ticket_custom_fields');
+        Schema::dropIfExists('zd_user_photos');
     }
 }

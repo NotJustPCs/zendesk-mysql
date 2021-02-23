@@ -5,6 +5,7 @@ namespace App\Zendesk\Api;
 
 use App\Zendesk\Client;
 use Illuminate\Support\Facades\DB;
+use App\Zendesk\Interfaces\ApiInterface;
 
 
 class Organization implements ApiInterface
@@ -71,7 +72,7 @@ class Organization implements ApiInterface
     {
         if (is_array($tags) && !empty($tags)) {
             foreach ($tags as  $tag) {
-                DB::table('organization_tags')->insert(['organization_id' => $organizationId, 'tag' => $tag]);
+                DB::table('zd_organization_tags')->insert(['organization_id' => $organizationId, 'tag' => $tag]);
             }
         }
     }
@@ -79,7 +80,7 @@ class Organization implements ApiInterface
     private function storeOrganizationFields($organizationFields, $organizationId)
     {
         if (is_array($organizationFields) && !empty($organizationFields)) {
-            DB::table('organization_fields')->insert([
+            DB::table('zd_organization_fields')->insert([
                 'organization_id' => $organizationId,
                 '1password_vault_id' => $organizationFields['1password_vault_id'],
                 'asset_database_company_id' => $organizationFields['asset_database_company_id'],
@@ -102,12 +103,12 @@ class Organization implements ApiInterface
     {
         if (is_array($organizationDomainNames) && !empty($organizationDomainNames)) {
             foreach ($organizationDomainNames as $domain) {
-                DB::table('organization_domain_names')->insert(['organization_id' => $organizationId, 'domain' => $domain]);
+                DB::table('zd_organization_domain_names')->insert(['organization_id' => $organizationId, 'domain' => $domain]);
             }
         }
     }
     private function storeOrganization($organization)
     {
-        DB::table('organizations')->insert($organization);
+        DB::table('zd_organizations')->insert($organization);
     }
 }

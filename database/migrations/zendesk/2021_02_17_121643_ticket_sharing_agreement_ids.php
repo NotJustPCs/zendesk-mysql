@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TicketFields extends Migration
+class TicketSharingAgreementIds extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class TicketFields extends Migration
      */
     public function up()
     {
-        Schema::create('ticket_fields', function (Blueprint $table) {
+        Schema::create('zd_ticket_sharing_agreement_ids', function (Blueprint $table) {
             $table->bigInteger('ticket_id')->nullable();
-            $table->bigInteger('id')->nullable();
-            $table->longText('value')->nullable();
+            $table->bigInteger('sharing_agreement_id')->nullable();
         });
     }
 
@@ -27,6 +26,6 @@ class TicketFields extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ticket_fields');
+        Schema::dropIfExists('zd_ticket_sharing_agreement_ids');
     }
 }

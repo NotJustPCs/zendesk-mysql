@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TicketSharingAgreementIds extends Migration
+class TicketFollowupIds extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class TicketSharingAgreementIds extends Migration
      */
     public function up()
     {
-        Schema::create('ticket_sharing_agreement_ids', function (Blueprint $table) {
+        Schema::create('zd_ticket_followup_ids', function (Blueprint $table) {
             $table->bigInteger('ticket_id')->nullable();
-            $table->bigInteger('sharing_agreement_id')->nullable();
+            $table->bigInteger('followup_id')->nullable();
         });
     }
 
@@ -26,6 +26,6 @@ class TicketSharingAgreementIds extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ticket_sharing_agreement_ids');
+        Schema::dropIfExists('zd_ticket_followup_ids');
     }
 }

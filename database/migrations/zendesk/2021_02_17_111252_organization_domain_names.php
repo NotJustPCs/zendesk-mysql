@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TicketEmailCcIds extends Migration
+class OrganizationDomainNames extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class TicketEmailCcIds extends Migration
      */
     public function up()
     {
-        Schema::create('ticket_email_cc_ids', function (Blueprint $table) {
-            $table->bigInteger('ticket_id')->nullable();
-            $table->string('email_cc_id')->nullable();
+        Schema::create('zd_organization_domain_names', function (Blueprint $table) {
+            $table->bigInteger('organization_id');
+            $table->string('domain')->nullable();
         });
     }
 
@@ -26,6 +26,6 @@ class TicketEmailCcIds extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ticket_email_cc_ids');
+        Schema::dropIfExists('zd_organization_domain_names');
     }
 }

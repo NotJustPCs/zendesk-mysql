@@ -5,6 +5,7 @@ namespace App\Zendesk\Api;
 
 use App\Zendesk\Client;
 use Illuminate\Support\Facades\DB;
+use App\Zendesk\Interfaces\ApiInterface;
 
 
 class Ticket implements ApiInterface
@@ -101,7 +102,7 @@ class Ticket implements ApiInterface
             $source = $via['source'];
             unset($via['source']);
             $this->storeSource($source, $ticketId);
-            DB::table('ticket_via')->insert(['ticket_id' => $ticketId, 'via' => $via['channel']]);
+            DB::table('zd_ticket_via')->insert(['ticket_id' => $ticketId, 'via' => $via['channel']]);
         }
     }
 
@@ -114,7 +115,7 @@ class Ticket implements ApiInterface
             && !empty($source['to']['address'])
             && !empty($source['to']['address'])
         ) {
-            DB::table('ticket_via_source')->insert(
+            DB::table('zd_ticket_via_source')->insert(
                 [
                     'ticket_id' => $ticketId,
                     'from_address' => !empty($source['from']['address']) ? $source['from']['address'] : null,
@@ -131,7 +132,7 @@ class Ticket implements ApiInterface
     {
         if (is_array($collaboratorIds) && !empty($collaboratorIds)) {
             foreach ($collaboratorIds as  $collaboratorId) {
-                DB::table('ticket_collaborator_ids')->insert(['ticket_id' => $ticketId, 'collaborator_id' => $collaboratorId]);
+                DB::table('zd_ticket_collaborator_ids')->insert(['ticket_id' => $ticketId, 'collaborator_id' => $collaboratorId]);
             }
         }
     }
@@ -140,7 +141,7 @@ class Ticket implements ApiInterface
     {
         if (is_array($followerIds) && !empty($followerIds)) {
             foreach ($followerIds as  $followerId) {
-                DB::table('ticket_follower_ids')->insert(['ticket_id' => $ticketId, 'follower_id' => $followerId]);
+                DB::table('zd_ticket_follower_ids')->insert(['ticket_id' => $ticketId, 'follower_id' => $followerId]);
             }
         }
     }
@@ -149,7 +150,7 @@ class Ticket implements ApiInterface
     {
         if (is_array($emailCcIds) && !empty($emailCcIds)) {
             foreach ($emailCcIds as  $emailCcId) {
-                DB::table('ticket_email_cc_ids')->insert(['ticket_id' => $ticketId, 'email_cc_id' => $emailCcId]);
+                DB::table('zd_ticket_email_cc_ids')->insert(['ticket_id' => $ticketId, 'email_cc_id' => $emailCcId]);
             }
         }
     }
@@ -158,7 +159,7 @@ class Ticket implements ApiInterface
     {
         if (is_array($tags) && !empty($tags)) {
             foreach ($tags as  $tag) {
-                DB::table('ticket_tags')->insert(['ticket_id' => $ticketId, 'tag' => $tag]);
+                DB::table('zd_ticket_tags')->insert(['ticket_id' => $ticketId, 'tag' => $tag]);
             }
         }
     }
@@ -167,7 +168,7 @@ class Ticket implements ApiInterface
     {
         if (is_array($customFields) && !empty($customFields)) {
             foreach ($customFields as  $customField) {
-                DB::table('ticket_custom_fields')->insert(['ticket_id' => $ticketId, 'id' => $customField['id'], 'value' => $customField['value']]);
+                DB::table('zd_ticket_custom_fields')->insert(['ticket_id' => $ticketId, 'id' => $customField['id'], 'value' => $customField['value']]);
             }
         }
     }
@@ -176,7 +177,7 @@ class Ticket implements ApiInterface
     {
         if (is_array($sharingAgreementIds) && !empty($sharingAgreementIds)) {
             foreach ($sharingAgreementIds as  $sharingAgreementId) {
-                DB::table('ticket_sharing_agreement_ids')->insert(['ticket_id' => $ticketId, 'sharing_agreement_id' => $sharingAgreementId]);
+                DB::table('zd_ticket_sharing_agreement_ids')->insert(['ticket_id' => $ticketId, 'sharing_agreement_id' => $sharingAgreementId]);
             }
         }
     }
@@ -185,7 +186,7 @@ class Ticket implements ApiInterface
     {
         if (is_array($fields) && !empty($fields)) {
             foreach ($fields as  $field) {
-                DB::table('ticket_fields')->insert(['ticket_id' => $ticketId, 'id' => $field['id'], 'value' => $field['value']]);
+                DB::table('zd_ticket_fields')->insert(['ticket_id' => $ticketId, 'id' => $field['id'], 'value' => $field['value']]);
             }
         }
     }
@@ -194,20 +195,20 @@ class Ticket implements ApiInterface
     {
         if (is_array($followupIds) && !empty($followupIds)) {
             foreach ($followupIds as  $followupId) {
-                DB::table('ticket_followup_ids')->insert(['ticket_id' => $ticketId, 'followup_id' => $followupId]);
+                DB::table('zd_ticket_followup_ids')->insert(['ticket_id' => $ticketId, 'followup_id' => $followupId]);
             }
         }
     }
 
     private function storeTicket($ticket)
     {
-        DB::table('tickets')->insert($ticket);
+        DB::table('zd_tickets')->insert($ticket);
     }
 
     private function storeSatisfactionRating($satisfactionRating, $ticketId)
     {
         if (!empty($satisfactionRating)) {
-            DB::table('ticket_satisfaction_rating')->insert(
+            DB::table('zd_ticket_satisfaction_rating')->insert(
                 [
                     'ticket_id' => $ticketId,
                     'comment' => $satisfactionRating['comment'],

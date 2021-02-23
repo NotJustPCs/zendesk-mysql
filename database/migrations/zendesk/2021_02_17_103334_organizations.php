@@ -13,7 +13,7 @@ class Organizations extends Migration
      */
     public function up()
     {
-        Schema::create('organizations', function (Blueprint $table) {
+        Schema::create('zd_organizations', function (Blueprint $table) {
             $table->bigInteger('id')->nullable();
             $table->string('name')->nullable();
             $table->string('details')->nullable();
@@ -35,6 +35,6 @@ class Organizations extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organizations');
+        Schema::dropIfExists('zd_organizations');
     }
 }

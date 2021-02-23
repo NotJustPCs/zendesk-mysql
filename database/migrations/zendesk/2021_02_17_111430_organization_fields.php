@@ -13,7 +13,7 @@ class OrganizationFields extends Migration
      */
     public function up()
     {
-        Schema::create('organization_fields', function (Blueprint $table) {
+        Schema::create('zd_organization_fields', function (Blueprint $table) {
             $table->bigInteger('organization_id');
             $table->text('1password_vault_id')->nullable();
             $table->string('asset_database_company_id')->nullable();
@@ -38,6 +38,6 @@ class OrganizationFields extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organization_fields');
+        Schema::dropIfExists('zd_organization_fields');
     }
 }

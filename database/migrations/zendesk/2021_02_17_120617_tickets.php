@@ -13,7 +13,7 @@ class Tickets extends Migration
      */
     public function up()
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('zd_tickets', function (Blueprint $table) {
             $table->bigInteger('id')->nullable();
             $table->boolean('allow_attachments')->nullable();
             $table->boolean('allow_channelback')->nullable();
@@ -49,6 +49,6 @@ class Tickets extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('zd_tickets');
     }
 }

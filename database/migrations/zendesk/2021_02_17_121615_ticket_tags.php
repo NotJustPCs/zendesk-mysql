@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class OrganizationTags extends Migration
+class TicketTags extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class OrganizationTags extends Migration
      */
     public function up()
     {
-        Schema::create('organization_tags', function (Blueprint  $table) {
-            $table->bigInteger('organization_id');
+        Schema::create('zd_ticket_tags', function (Blueprint $table) {
+            $table->bigInteger('ticket_id')->nullable();
             $table->string('tag')->nullable();
         });
     }
@@ -26,6 +26,6 @@ class OrganizationTags extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organization_tags');
+        Schema::dropIfExists('zd_ticket_tags');
     }
 }

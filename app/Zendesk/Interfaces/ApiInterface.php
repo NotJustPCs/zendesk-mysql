@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Zendesk\Api;
+namespace App\Zendesk\Interfaces;
 
 
 interface ApiInterface
