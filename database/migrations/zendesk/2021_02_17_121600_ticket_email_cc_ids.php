@@ -13,7 +13,7 @@ class TicketEmailCcIds extends Migration
      */
     public function up()
     {
-        Schema::create('zd_ticket_email_cc_ids', function (Blueprint $table) {
+        Schema::create('zendesk_ticket_email_cc_ids', function (Blueprint $table) {
             $table->bigInteger('ticket_id')->nullable();
             $table->string('email_cc_id')->nullable();
         });
@@ -26,6 +26,6 @@ class TicketEmailCcIds extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zd_ticket_email_cc_ids');
+        Schema::dropIfExists('zendesk_ticket_email_cc_ids');
     }
 }

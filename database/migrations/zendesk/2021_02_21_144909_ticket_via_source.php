@@ -13,7 +13,7 @@ class TicketViaSource extends Migration
      */
     public function up()
     {
-        Schema::create('zd_ticket_via_source', function (Blueprint $table) {
+        Schema::create('zendesk_ticket_via_source', function (Blueprint $table) {
             $table->bigInteger('ticket_id');
             $table->string('from_address')->nullable();
             $table->string('from_name')->nullable();
@@ -30,6 +30,6 @@ class TicketViaSource extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zd_ticket_via_source');
+        Schema::dropIfExists('zendesk_ticket_via_source');
     }
 }

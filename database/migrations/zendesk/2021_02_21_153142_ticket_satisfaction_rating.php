@@ -13,7 +13,7 @@ class TicketSatisfactionRating extends Migration
      */
     public function up()
     {
-        Schema::create('zd_ticket_satisfaction_rating', function (Blueprint $table) {
+        Schema::create('zendesk_ticket_satisfaction_rating', function (Blueprint $table) {
             $table->bigInteger('ticket_id');
             $table->string('id')->nullable();
             $table->string('comment')->nullable();
@@ -28,6 +28,6 @@ class TicketSatisfactionRating extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zd_ticket_satisfaction_rating');
+        Schema::dropIfExists('zendesk_ticket_satisfaction_rating');
     }
 }

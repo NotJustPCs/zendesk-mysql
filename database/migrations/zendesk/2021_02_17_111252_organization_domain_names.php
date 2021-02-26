@@ -13,7 +13,7 @@ class OrganizationDomainNames extends Migration
      */
     public function up()
     {
-        Schema::create('zd_organization_domain_names', function (Blueprint $table) {
+        Schema::create('zendesk_organization_domain_names', function (Blueprint $table) {
             $table->bigInteger('organization_id');
             $table->string('domain')->nullable();
         });
@@ -26,6 +26,6 @@ class OrganizationDomainNames extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zd_organization_domain_names');
+        Schema::dropIfExists('zendesk_organization_domain_names');
     }
 }

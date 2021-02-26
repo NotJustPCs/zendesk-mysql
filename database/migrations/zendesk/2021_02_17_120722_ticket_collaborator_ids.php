@@ -13,7 +13,7 @@ class TicketCollaboratorIds extends Migration
      */
     public function up()
     {
-        Schema::create('zd_ticket_collaborator_ids', function (Blueprint $table) {
+        Schema::create('zendesk_ticket_collaborator_ids', function (Blueprint $table) {
             $table->bigInteger('ticket_id')->nullable();
             $table->bigInteger('collaborator_id')->nullable();
         });
@@ -26,6 +26,6 @@ class TicketCollaboratorIds extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zd_ticket_collaborator_ids');
+        Schema::dropIfExists('zendesk_ticket_collaborator_ids');
     }
 }

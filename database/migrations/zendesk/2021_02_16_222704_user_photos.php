@@ -13,7 +13,7 @@ class UserPhotos extends Migration
      */
     public function up()
     {
-        Schema::create('zd_user_photos', function (Blueprint $table) {
+        Schema::create('zendesk_user_photos', function (Blueprint $table) {
             $table->bigInteger('user_id');
             $table->text('url')->nullable();
         });
@@ -26,6 +26,6 @@ class UserPhotos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zd_user_photos');
+        Schema::dropIfExists('zendesk_user_photos');
     }
 }

@@ -13,7 +13,7 @@ class UserFields extends Migration
      */
     public function up()
     {
-        Schema::create('zd_user_fields', function (Blueprint $table) {
+        Schema::create('zendesk_user_fields', function (Blueprint $table) {
             $table->bigInteger('user_id');
             $table->string('asset_database_user_id')->nullable();
             $table->string('irregular_prepaid_hours')->nullable();
@@ -29,6 +29,6 @@ class UserFields extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zd_user_fields');
+        Schema::dropIfExists('zendesk_user_fields');
     }
 }

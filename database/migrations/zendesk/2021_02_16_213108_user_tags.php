@@ -13,7 +13,7 @@ class UserTags extends Migration
      */
     public function up()
     {
-        Schema::create('zd_user_tags', function (Blueprint $table) {
+        Schema::create('zendesk_user_tags', function (Blueprint $table) {
             $table->bigInteger('user_id');
             $table->string('tag')->nullable();
         });
@@ -26,6 +26,6 @@ class UserTags extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zd_user_tags');
+        Schema::dropIfExists('zendesk_user_tags');
     }
 }

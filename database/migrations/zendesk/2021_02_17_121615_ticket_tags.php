@@ -13,7 +13,7 @@ class TicketTags extends Migration
      */
     public function up()
     {
-        Schema::create('zd_ticket_tags', function (Blueprint $table) {
+        Schema::create('zendesk_ticket_tags', function (Blueprint $table) {
             $table->bigInteger('ticket_id')->nullable();
             $table->string('tag')->nullable();
         });
@@ -26,6 +26,6 @@ class TicketTags extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zd_ticket_tags');
+        Schema::dropIfExists('zendesk_ticket_tags');
     }
 }

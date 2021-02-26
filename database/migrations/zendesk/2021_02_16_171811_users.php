@@ -13,7 +13,7 @@ class Users extends Migration
      */
     public function up()
     {
-        Schema::create('zd_users', function (Blueprint $table) {
+        Schema::create('zendesk_users', function (Blueprint $table) {
             $table->bigInteger('id')->nullable();
             $table->string('alias')->nullable()->nullable();
             $table->boolean('active')->nullable()->nullable();
@@ -59,6 +59,6 @@ class Users extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zd_users');
+        Schema::dropIfExists('zendesk_users');
     }
 }

@@ -13,7 +13,7 @@ class OrganizationTags extends Migration
      */
     public function up()
     {
-        Schema::create('zd_organization_tags', function (Blueprint  $table) {
+        Schema::create('zendesk_organization_tags', function (Blueprint  $table) {
             $table->bigInteger('organization_id');
             $table->string('tag')->nullable();
         });
@@ -26,6 +26,6 @@ class OrganizationTags extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zd_organization_tags');
+        Schema::dropIfExists('zendesk_organization_tags');
     }
 }

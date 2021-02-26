@@ -66,7 +66,7 @@ class User implements ApiInterface
     {
         if (is_array($tags) && !empty($tags)) {
             foreach ($tags as  $tag) {
-                DB::table('zd_user_tags')->insert(['user_id' => $userId, 'tag' => $tag]);
+                DB::table('zendesk_user_tags')->insert(['user_id' => $userId, 'tag' => $tag]);
             }
         }
     }
@@ -74,7 +74,7 @@ class User implements ApiInterface
     private function storeUserFields($userFields, $userId)
     {
         if (is_array($userFields) && !empty($userFields)) {
-            DB::table('zd_user_fields')->insert([
+            DB::table('zendesk_user_fields')->insert([
                 'user_id' => $userId,
                 'asset_database_user_id' => $userFields['asset_database_user_id'],
                 'irregular_prepaid_hours' => $userFields['irregular_prepaid_hours'],
@@ -98,13 +98,13 @@ class User implements ApiInterface
 
     private function storeUsers($user)
     {
-        DB::table('zd_users')->insert($user);
+        DB::table('zendesk_users')->insert($user);
     }
 
     private function storeUserPhoto($photo, $userId)
     {
         if (is_array($photo) && !empty($photo)) {
-            DB::table('zd_user_photos')->insert(
+            DB::table('zendesk_user_photos')->insert(
                 ['user_id' => $userId, 'url' => $photo['url']]
             );
         }

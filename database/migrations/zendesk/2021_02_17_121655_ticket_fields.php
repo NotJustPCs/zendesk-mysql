@@ -13,7 +13,7 @@ class TicketFields extends Migration
      */
     public function up()
     {
-        Schema::create('zd_ticket_fields', function (Blueprint $table) {
+        Schema::create('zendesk_ticket_fields', function (Blueprint $table) {
             $table->bigInteger('ticket_id')->nullable();
             $table->bigInteger('id')->nullable();
             $table->longText('value')->nullable();
@@ -27,6 +27,6 @@ class TicketFields extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zd_ticket_fields');
+        Schema::dropIfExists('zendesk_ticket_fields');
     }
 }
