@@ -11,3 +11,17 @@ Comissioned by @foshdafosh
 * Create and edit .env as appropriate
 * Visit yourappdomain.com/key
 * Copy string into .env APP_KEY= variable
+
+## Planned additions:
+- [x] ZenDesk
+- [ ] Xero
+- [ ] GoCardless
+- [ ] ProcessSt
+- [ ] TeamViewer
+- [ ] Metis
+- [ ] Uptime Robot
+- [ ] Gandi
+- [ ] Mailchimp
+- [ ] SnipeIT Asset Database
+- [ ] PHP Server Monitor
+- [ ] Denormalise data using Views 
