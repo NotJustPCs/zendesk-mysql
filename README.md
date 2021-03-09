@@ -14,8 +14,23 @@ Comissioned by @foshdafosh
 
 ## Planned additions:
 - [x] ZenDesk
+    - [x] Users
+    - [ ] Identities
+    - [x] Organisations
+    - [x] Tickets
 - [ ] Xero
+    - [ ] Contacts
+    - [ ] Sales Invoices
+    - [ ] Quotes
+    - [ ] Inventory (Products and Services)
+    - [ ] Staff Time Off
+    - [ ] Staff Timesheets
 - [ ] GoCardless
+    - [ ] Customers
+    - [ ] Payments
+    - [ ] Plans
+    - [ ] Payouts
+    - [ ] Events
 - [ ] ProcessSt
 - [ ] TeamViewer
 - [ ] Metis
