@@ -17,16 +17,10 @@ class Ticket implements ApiInterface
     {
         $this->http = $http;
     }
-    public function tickets(string $nextPage = null): array
+    public function tickets(array $params = []): array
     {
-        if (isset($nextPage) && !empty($nextPage)) {
-            $nextPageUrl = str_replace(config('zendesk.url'), '', $nextPage);
-            $tickets = $this->http->get($nextPageUrl);
-        } else {
-            $tickets = $this->http->get('/tickets');
-        }
+        $tickets = $this->http->get('/tickets',$params);
         $this->processData($tickets);
-        $this->nextPage($tickets);
         return $this->ticketIds;
     }
     /**
@@ -81,6 +75,7 @@ class Ticket implements ApiInterface
             //Store ticket
             $this->storeTicket($ticket);
         }
+        $this->nextPage($tickets);
         return true;
     }
 
@@ -90,8 +85,10 @@ class Ticket implements ApiInterface
      */
     public function nextPage($page)
     {
-        if ($page['next_page'] !== null) {
-            $this->tickets($page['next_page']);
+        if (isset($page['next_page']) && !empty($page['next_page']) ) {
+            $nextPageUrl = str_replace(config('zendesk.url'), '', $page['next_page']);
+            $users = $this->http->get($nextPageUrl);
+            $this->processData($users);
         }
     }
 

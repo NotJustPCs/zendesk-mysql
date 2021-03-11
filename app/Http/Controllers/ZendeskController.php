@@ -26,12 +26,14 @@ class ZendeskController extends Controller
         $client = $builder->createClientV2();
         $apiFactory = new ApiFactory($client);
         //Fetch Users
+        $params=[];
+        $params['include'] = 'identities';
         $userApi = $apiFactory->userApi();
-        $users = $userApi->users();
-        //Fetch organizations
+        $users = $userApi->users($params);
+        // Fetch organizations
         $organizationApi = $apiFactory->organizationApi();
         $organizations = $organizationApi->organizations();
-        //Fetch Tickets
+        // Fetch Tickets
         $ticketApi = $apiFactory->ticketApi();
         $tickets = $ticketApi->tickets();
 

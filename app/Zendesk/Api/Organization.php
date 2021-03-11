@@ -18,16 +18,10 @@ class Organization implements ApiInterface
         $this->http = $http;
     }
 
-    public function organizations(string $nextPage = null): array
+    public function organizations(array $params = []): array
     {
-        if (isset($nextPage) && !empty($nextPage)) {
-            $nextPageUrl = str_replace(config('zendesk.url'), '', $nextPage);
-            $organizations = $this->http->get($nextPageUrl);
-        } else {
-            $organizations = $this->http->get('/organizations');
-        }
+        $organizations = $this->http->get('/organizations',$params);
         $this->processData($organizations);
-        $this->nextPage($organizations);
         return $this->organizationIds;
     }
     /**
@@ -54,6 +48,7 @@ class Organization implements ApiInterface
             //Store organization
             $this->storeOrganization($organization);
         }
+        $this->nextPage($organizations);
         return true;
     }
 
@@ -63,8 +58,10 @@ class Organization implements ApiInterface
      */
     public function nextPage($page)
     {
-        if ($page['next_page'] !== null) {
-            $this->organizations($page['next_page']);
+        if (isset($page['next_page']) && !empty($page['next_page']) ) {
+            $nextPageUrl = str_replace(config('zendesk.url'), '', $page['next_page']);
+            $users = $this->http->get($nextPageUrl);
+            $this->processData($users);
         }
     }
 

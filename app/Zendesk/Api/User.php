@@ -123,8 +123,6 @@ class User implements ApiInterface
             $users = $this->http->get($nextPageUrl);
             $this->processData($users);
         }
-
-
     }
 
     private function storeUsers($user)
