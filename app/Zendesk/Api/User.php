@@ -134,7 +134,7 @@ class User implements ApiInterface
     {
         if (is_array($photo) && !empty($photo)) {
             DB::table('zendesk_user_photos')->insert(
-                ['user_id' => $userId, 'url' => $photo['url']]
+                ['user_id' => $userId, 'url' => $photo['content_url']]
             );
         }
     }
