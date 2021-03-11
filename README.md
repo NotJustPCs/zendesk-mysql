@@ -39,4 +39,5 @@ Comissioned by @foshdafosh
 - [ ] Mailchimp
 - [ ] MySQL Import
     - [ ] Import tables from multiple MySQL databases, adding a prefix to tables (db1_mytable, db2_thattable etc) for each database
-- [ ] Denormalise data using Views 
+- [ ] Denormalise data using Views
+- [ ] Clockify - merge original project into this one https://github.com/NotJustPCs/clockify-mysql
