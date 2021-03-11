@@ -25,17 +25,17 @@ Comissioned by @foshdafosh
     - [ ] Inventory (Products and Services)
     - [ ] Staff Time Off
     - [ ] Staff Timesheets
+- [ ] ProcessSt
+- [ ] TeamViewer
+- [ ] Metis
+- [ ] Gandi
+- [ ] Uptime Robot
 - [ ] GoCardless
     - [ ] Customers
     - [ ] Payments
     - [ ] Plans
     - [ ] Payouts
     - [ ] Events
-- [ ] ProcessSt
-- [ ] TeamViewer
-- [ ] Metis
-- [ ] Uptime Robot
-- [ ] Gandi
 - [ ] Mailchimp
 - [ ] MySQL Import
     - [ ] Import tables from multiple MySQL databases, adding a prefix to tables (db1_mytable, db2_thattable etc) for each database
