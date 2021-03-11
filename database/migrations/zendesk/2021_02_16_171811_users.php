@@ -15,14 +15,14 @@ class Users extends Migration
     {
         Schema::create('zendesk_users', function (Blueprint $table) {
             $table->bigInteger('id')->nullable();
-            $table->string('alias')->nullable()->nullable();
-            $table->boolean('active')->nullable()->nullable();
-            $table->boolean('chat_only')->nullable()->nullable();
-            $table->string('created_at')->nullable()->nullable();
-            $table->integer('custom_role_id')->nullable()->nullable();
-            $table->bigInteger('default_group_id')->nullable()->nullable();
-            $table->string('details')->nullable()->nullable();
-            $table->string('email')->nullable()->nullable();
+            $table->string('alias')->nullable();
+            $table->boolean('active')->nullable();
+            $table->boolean('chat_only')->nullable();
+            $table->string('created_at')->nullable();
+            $table->bigInteger('custom_role_id')->nullable();
+            $table->bigInteger('default_group_id')->nullable();
+            $table->string('details')->nullable();
+            $table->string('email')->nullable();
             $table->string('external_id')->nullable();
             $table->string('iana_time_zone')->nullable();
             $table->string('last_login_at')->nullable();

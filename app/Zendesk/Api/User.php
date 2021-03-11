@@ -6,6 +6,7 @@ namespace App\Zendesk\Api;
 use App\Zendesk\Client;
 use Illuminate\Support\Facades\DB;
 use App\Zendesk\Interfaces\ApiInterface;
+use Illuminate\Support\Facades\Log;
 
 class User implements ApiInterface
 {
@@ -22,16 +23,10 @@ class User implements ApiInterface
      * @return array
      * @throws \JsonException
      */
-    public function users(string $nextPage = null): array
+    public function users(array $params = []): array
     {
-        if (isset($nextPage) && !empty($nextPage)) {
-            $nextPageUrl = str_replace(config('zendesk.url'), '', $nextPage);
-            $users = $this->http->get($nextPageUrl);
-        } else {
-            $users = $this->http->get('/users');
-        }
+        $users = $this->http->get('/users',$params);
         $this->processData($users);
-        $this->nextPage($users);
         return $this->userIds;
     }
 
@@ -41,6 +36,13 @@ class User implements ApiInterface
      */
     public function processData($users)
     {
+        $this->processUsers($users);
+        $this->processUserIdentities($users);
+        $this->nextPage($users);
+        return true;
+    }
+    private function processUsers($users){
+
         foreach ($users['users'] as $user) {
             $userId = $user['id'];
             array_push($this->userIds, $userId);
@@ -59,9 +61,34 @@ class User implements ApiInterface
             //Store user
             $this->storeUsers($user);
         }
-        return true;
     }
-
+    private function processUserIdentities($users){
+        foreach ($users['identities'] as $identity) {
+            switch ($identity['type']) {
+                case 'email':
+                    $this->storeUserIdentityEmail($identity);
+                    break;
+                case 'phone_number':
+                    $this->storeUserIdentityPhoneNumber($identity);
+                    break;
+                case 'facebook':
+                    $this->storeUserIdentityFacebook($identity);
+                    break;
+                case 'google':
+                    $this->storeUserIdentityGoogle($identity);
+                    break;
+                case 'agent_forwarding':
+                    $this->storeUserIdentityAgentForwarding($identity);
+                    break;
+                case 'twitter':
+                    $this->storeUserIdentityTwitter($identity);
+                    break;
+                default:
+                    Log::info('default case');
+                    break;
+            }
+        }
+    }
     private function storeTags($tags, $userId)
     {
         if (is_array($tags) && !empty($tags)) {
@@ -91,9 +118,13 @@ class User implements ApiInterface
      */
     public function nextPage($page)
     {
-        if ($page['next_page'] !== null) {
-            $this->users($page['next_page']);
+        if (isset($page['next_page']) && !empty($page['next_page']) ) {
+            $nextPageUrl = str_replace(config('zendesk.url'), '', $page['next_page']);
+            $users = $this->http->get($nextPageUrl);
+            $this->processData($users);
         }
+
+
     }
 
     private function storeUsers($user)
@@ -108,5 +139,35 @@ class User implements ApiInterface
                 ['user_id' => $userId, 'url' => $photo['url']]
             );
         }
+    }
+
+    private function storeUserIdentityEmail($identity)
+    {
+        DB::table('zendesk_user_identity_emails')->insert($identity);
+    }
+
+    private function storeUserIdentityPhoneNumber($identity)
+    {
+        DB::table('zendesk_user_identity_phone_numbers')->insert($identity);
+    }
+
+    private function storeUserIdentityFacebook($identity)
+    {
+        DB::table('zendesk_user_identity_facebook')->insert($identity);
+    }
+
+    private function storeUserIdentityGoogle($identity)
+    {
+        DB::table('zendesk_user_identity_google')->insert($identity);
+    }
+
+    private function storeUserIdentityAgentForwarding($identity)
+    {
+        DB::table('zendesk_user_identity_agent_forwarding')->insert($identity);
+    }
+
+    private function storeUserIdentityTwitter($identity)
+    {
+        DB::table('zendesk_user_identity_twitter')->insert($identity);
     }
 }
