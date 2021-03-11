@@ -25,14 +25,20 @@ Comissioned by @foshdafosh
     - [ ] Inventory (Products and Services)
     - [ ] Staff Time Off
     - [ ] Staff Timesheets
-- [ ] ProcessSt
+- [ ] ProcessSt - https://developer.process.st/
 - [ ] TeamViewer
 - [ ] Metis (API in Beta) - http://metis2.pack-net.co.uk/api
     - [ ] Channels
     - [ ] Customers
     - [ ] Calls
     - [ ] Invoices
-- [ ] Gandi
+- [ ] Gandi - https://api.gandi.net/
+    - [ ] Domains
+    - [ ] LiveDNS
+    - [ ] Email
+    - [ ] Billing
+    - [ ] Organisation
+    - [ ] Template
 - [ ] Uptime Robot
 - [ ] GoCardless
     - [ ] Customers
