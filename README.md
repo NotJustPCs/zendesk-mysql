@@ -27,7 +27,11 @@ Comissioned by @foshdafosh
     - [ ] Staff Timesheets
 - [ ] ProcessSt
 - [ ] TeamViewer
-- [ ] Metis
+- [ ] Metis (API in Beta) - http://metis2.pack-net.co.uk/api
+    - [ ] Channels
+    - [ ] Customers
+    - [ ] Calls
+    - [ ] Invoices
 - [ ] Gandi
 - [ ] Uptime Robot
 - [ ] GoCardless
