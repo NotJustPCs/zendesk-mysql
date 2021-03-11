@@ -37,4 +37,6 @@ Comissioned by @foshdafosh
 - [ ] Uptime Robot
 - [ ] Gandi
 - [ ] Mailchimp
+- [ ] MySQL Import
+    - [ ] Import tables from multiple MySQL databases, adding a prefix to tables (db1_mytable, db2_thattable etc) for each database
 - [ ] Denormalise data using Views 
