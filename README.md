@@ -15,7 +15,7 @@ Comissioned by @foshdafosh
 ## Planned additions:
 - [x] ZenDesk
     - [x] Users
-    - [ ] Identities
+    - [X] Identities
     - [x] Organisations
     - [x] Tickets
 - [ ] Xero
