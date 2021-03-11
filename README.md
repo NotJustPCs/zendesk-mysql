@@ -37,6 +37,4 @@ Comissioned by @foshdafosh
 - [ ] Uptime Robot
 - [ ] Gandi
 - [ ] Mailchimp
-- [ ] SnipeIT Asset Database
-- [ ] PHP Server Monitor
 - [ ] Denormalise data using Views 
