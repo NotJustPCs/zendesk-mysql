@@ -18,12 +18,12 @@ Comissioned by @foshdafosh
     - [X] Identities
     - [x] Organisations
     - [x] Tickets
-- [ ] Xero
+- [ ] Xero - https://developer.xero.com/
     - [ ] Contacts
     - [ ] Sales Invoices
     - [ ] Quotes
-    - [ ] Inventory (Products and Services)
-    - [ ] Staff Time Off
+    - [ ] Items
+    - [ ] Staff Leave
     - [ ] Staff Timesheets
 - [ ] ProcessSt - https://developer.process.st/
 - [ ] TeamViewer
@@ -46,6 +46,7 @@ Comissioned by @foshdafosh
     - [ ] Plans
     - [ ] Payouts
     - [ ] Events
+- [ ] Square - https://developer.squareup.com/reference/square
 - [ ] Mailchimp
 - [ ] MySQL Import
     - [ ] Import tables from multiple MySQL databases, adding a prefix to tables (db1_mytable, db2_thattable etc) for each database
