@@ -23,9 +23,19 @@ Comissioned by @foshdafosh
     - [ ] Sales Invoices
     - [ ] Quotes
     - [ ] Items
+    - [ ] Employee details
     - [ ] Staff Leave
     - [ ] Staff Timesheets
+    - [ ] Users
+- [ ] Date Dimension regeneration
+    - [ ] Template: https://gist.github.com/foshdafosh/9a5242f3df0e01d4ad782bf1379eefc2
+    - [ ] Use first and last dates in available data as start and end
+    - [ ] Create dates_holidays table, and automatically populate using this file: https://www.gov.uk/bank-holidays/england-and-wales.ics
 - [ ] ProcessSt - https://developer.process.st/
+    - [ ] Users
+    - [ ] Templates
+    - [ ] Checklists
+    - [ ] Assignments
 - [ ] TeamViewer
 - [ ] Metis (API in Beta) - http://metis2.pack-net.co.uk/api
     - [ ] Channels
@@ -39,7 +49,11 @@ Comissioned by @foshdafosh
     - [ ] Billing
     - [ ] Organisation
     - [ ] Template
-- [ ] Uptime Robot
+- [ ] Uptime Robot - https://uptimerobot.com/api/
+    - [ ] Monitors
+    - [ ] Alert Contacts
+    - [ ] Maintainance Windows
+    - [ ] Public Status Pages
 - [ ] GoCardless
     - [ ] Customers
     - [ ] Payments
@@ -52,3 +66,9 @@ Comissioned by @foshdafosh
     - [ ] Import tables from multiple MySQL databases, adding a prefix to tables (db1_mytable, db2_thattable etc) for each database
 - [ ] Denormalise data using Views
 - [ ] Clockify - merge original project into this one https://github.com/NotJustPCs/clockify-mysql
+- [ ] Use webhooks etc to keep data up to date during the day
+    - [ ] ZenDesk
+    - [ ] Xero
+    - [ ] ProcessSt
+    - [ ] Metis
+    - [ ] Uptime Robot
