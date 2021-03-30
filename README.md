@@ -29,7 +29,7 @@ Comissioned by @foshdafosh
     - [ ] Users
 - [ ] Date Dimension regeneration
     - [ ] [Template](https://gist.github.com/foshdafosh/9a5242f3df0e01d4ad782bf1379eefc2 "Date Dimension Gist")
-    - [ ] Use first and last dates in available data as start and end
+    - [ ] Use first and last dates in available data as start and end (`SELECT rng.EarliestDate, rng.LatestDate FROM dates_range AS rng;`)
     - [ ] Create dates_holidays table, and automatically populate using [this file](https://www.gov.uk/bank-holidays/england-and-wales.ics "ics file from gov.uk")
 - [ ] [ProcessSt](https://developer.process.st/ "Process St Developer reference")
     - [ ] Users
