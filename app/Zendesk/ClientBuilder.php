@@ -3,7 +3,7 @@
 
 namespace App\Zendesk;
 
-use App\Helpers\Core;
+use App\Helpers\Zendesk;
 use Http\Client\{
     Common\HttpMethodsClient,
     Common\Plugin\AddHostPlugin,
@@ -51,7 +51,7 @@ class ClientBuilder
     public function createClientV2(): Client
     {
         $endPoint_v2 = config('zendesk.url');
-        $apiKey = Core::zendeskToken();
+        $apiKey = Zendesk::zendeskToken();
         return $this->create($endPoint_v2, $apiKey);
     }
 

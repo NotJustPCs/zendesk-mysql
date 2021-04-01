@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Core;
+use App\Helpers\Zendesk;
 use App\Zendesk\ApiFactory;
 use App\Zendesk\ClientBuilder;
 use App\Http\Controllers\Controller;
@@ -21,7 +21,6 @@ class ZendeskController extends Controller
 
     public function index()
     {
-
         $builder = new ClientBuilder();
         $client = $builder->createClientV2();
         $apiFactory = new ApiFactory($client);

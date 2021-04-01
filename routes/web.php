@@ -13,9 +13,26 @@
 |
 */
 
-$router->get('/zendesk', [
-    'as' => 'index', 'uses' => 'ZendeskController@index'
+$router->get('api/zendesk', [
+    'as' => 'zendesk.index', 'uses' => 'ZendeskController@index'
 ]);
+
+$router->get('api/xero', [
+    'as' => 'xero.index', 'uses' => 'XeroController@index'
+]);
+$router->get('api/xero/authorization', [
+    'as' => 'xero.authorization', 'uses' => 'XeroController@authorization'
+]);
+
+$router->get('/api/xero/callback',[
+    'as' => 'xero.callback', 'uses' => 'XeroController@callback'
+]);
+
+//////////////////////////////////////
 $router->get('/key', function () {
     return \Illuminate\Support\Str::random(32);
+});
+
+$router->get('/', function () {
+    dd('Please Enter endpoint');
 });
