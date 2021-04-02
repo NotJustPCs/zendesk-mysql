@@ -11,6 +11,7 @@ Comissioned by @foshdafosh
 * Create and edit .env as appropriate
 * Visit yourappdomain.com/key
 * Copy string into .env APP_KEY= variable
+* Visit yourappdomain.com/api/zendesk to load ZenDesk data into MySQL
 
 ## Planned additions:
 - [x] ZenDesk
