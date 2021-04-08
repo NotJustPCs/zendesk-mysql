@@ -20,7 +20,7 @@ class Organization implements ApiInterface
 
     public function organizations(array $params = []): array
     {
-        $organizations = $this->http->get('/organizations',$params);
+        $organizations = $this->http->get('/organizations', $params);
         $this->processData($organizations);
         return $this->organizationIds;
     }
@@ -58,7 +58,7 @@ class Organization implements ApiInterface
      */
     public function nextPage($page)
     {
-        if (isset($page['next_page']) && !empty($page['next_page']) ) {
+        if (isset($page['next_page']) && !empty($page['next_page'])) {
             $nextPageUrl = str_replace(config('zendesk.url'), '', $page['next_page']);
             $users = $this->http->get($nextPageUrl);
             $this->processData($users);

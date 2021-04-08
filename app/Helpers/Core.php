@@ -5,12 +5,13 @@ if (!function_exists('urlGenerator')) {
     /**
      * @return \Laravel\Lumen\Routing\UrlGenerator
      */
-    function urlGenerator() {
+    function urlGenerator()
+    {
         return new \Laravel\Lumen\Routing\UrlGenerator(app());
     }
 }
 
-if (! function_exists('asset')) {
+if (!function_exists('asset')) {
     /**
      * Generate an asset path for the application.
      *
