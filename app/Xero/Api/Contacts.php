@@ -27,7 +27,6 @@ class Contacts
         foreach ($contacts as  $ContactObject) {
             $contact = Xero::deserialize($ContactObject);
             $contactId = $contact['contact_id'];
-            dd($contact, $ContactObject);
             //store contact groups
             $contact_groups = $contact['contact_groups'];
             unset($contact['contact_groups']);
