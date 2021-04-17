@@ -3,6 +3,7 @@
 namespace App\Xero;
 
 use GuzzleHttp\Client;
+use App\Xero\Api\Items;
 use App\Xero\Api\Quotes;
 use App\Xero\Api\Contacts;
 use App\Xero\Api\SaleInvoices;
@@ -20,11 +21,14 @@ class Xero
         //Store Contacts
         // (new Contacts($xeroTenantId, $accountingApi));
         // //Store Sale invoices
-        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        (new SaleInvoices($xeroTenantId, $accountingApi));
+        // $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        // (new SaleInvoices($xeroTenantId, $accountingApi));
         //Store Quotes
+        // $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        // (new Quotes($xeroTenantId, $accountingApi));
+        //Store items
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        (new Quotes($xeroTenantId, $accountingApi));
+        (new Items($xeroTenantId, $accountingApi));
 
         dd('done');
     }
