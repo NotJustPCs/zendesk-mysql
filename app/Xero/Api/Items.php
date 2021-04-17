@@ -39,7 +39,7 @@ class Items
             $sales_details = $item['sales_details'];
             unset($item['sales_details']);
             $this->storeSaleDetails($sales_details, $itemId);
-            //store quotes
+            //store Item
             $this->storeItem($item);
         }
     }
