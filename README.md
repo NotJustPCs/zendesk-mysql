@@ -49,7 +49,7 @@ Comissioned by @foshdafosh
     - [ ] Email
     - [ ] Billing
     - [ ] Organisation
-    - [ ] Template
+    - [ ] Templates
 - [ ] [Uptime Robot](https://uptimerobot.com/api/ "Uptime Robot developer reference")
     - [ ] Monitors
     - [ ] Alert Contacts
