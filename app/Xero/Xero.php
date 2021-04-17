@@ -3,9 +3,10 @@
 namespace App\Xero;
 
 use GuzzleHttp\Client;
+use App\Xero\Api\Contacts;
+use App\Xero\Api\SaleInvoices;
 use XeroAPI\XeroPHP\Configuration;
 use App\Helpers\Xero as XeroHelper;
-use App\Xero\Api\Contacts;
 use XeroAPI\XeroPHP\Api\AccountingApi;
 
 class Xero
@@ -17,7 +18,9 @@ class Xero
         $accountingApi = $this->accountingApiInstance($config);
         //Store Contacts
         (new Contacts($xeroTenantId, $accountingApi));
-        // $this->getContact($xeroTenantId, $accountingApi);
+        //Store Sale invoices
+        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        (new SaleInvoices($xeroTenantId, $accountingApi));
     }
     public function accountingApiInstance($config)
     {

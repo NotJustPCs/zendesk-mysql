@@ -50,6 +50,6 @@ class Contacts extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('xer_contacts');
+        Schema::dropIfExists('xero_contacts');
     }
 }
