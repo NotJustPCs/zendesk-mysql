@@ -83,8 +83,17 @@ class SaleInvoices
 
     private function storeLineItems($line_items, $invoiceId)
     {
-        //Note::null
-        // Log::info(json_encode($line_items));empty
+        foreach ($line_items as  $line_item) {
+            if (isset($line_item)) {
+                $line_item = Xero::deserialize($line_item);
+                $line_item['invoice_id'] = $invoiceId;
+                //Note: null
+                $tracking = $line_item['tracking'];
+                unset($line_item['tracking']);
+                Log::info(json_encode($tracking));
+                DB::table('xero_quote_line_items')->insert($line_item);
+            }
+        }
     }
     private function storeLineItemTracking($tracking, $line_item_id)
     {
