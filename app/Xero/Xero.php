@@ -10,6 +10,7 @@ use App\Xero\Api\Employee;
 use App\Xero\Api\SaleInvoices;
 use XeroAPI\XeroPHP\Configuration;
 use App\Helpers\Xero as XeroHelper;
+use App\Xero\Api\EmployeeLeave;
 use XeroAPI\XeroPHP\Api\PayrollUkApi;
 use XeroAPI\XeroPHP\Api\AccountingApi;
 
@@ -20,6 +21,7 @@ class Xero
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         $config = Configuration::getDefaultConfiguration()->setAccessToken((string)$storage->getSession()['token']);
         $accountingApi = $this->accountingApiInstance($config);
+        $payrollUkApi = $this->payrollUkApiInstance($config);
         //Store Contacts
         // (new Contacts($xeroTenantId, $accountingApi));
         // //Store Sale invoices
@@ -31,10 +33,12 @@ class Xero
         //Store items
         // $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         // (new Items($xeroTenantId, $accountingApi));
-        //Store items
+        //Store employees
+        // $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        // (new Employee($xeroTenantId,  $payrollUkApi));
+        //Store employee leaves
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        $payrollUkApi = $this->payrollAuApiInstance($config);
-        (new Employee($xeroTenantId,  $payrollUkApi));
+        (new EmployeeLeave($xeroTenantId,  $payrollUkApi));
 
         dd('done');
     }
@@ -46,7 +50,7 @@ class Xero
         );
     }
 
-    public function payrollAuApiInstance($config)
+    public function payrollUkApiInstance($config)
     {
         return $payrollUkApi = new PayrollUkApi(
             new Client(),
