@@ -12,6 +12,7 @@ use App\Xero\Api\SaleInvoices;
 use App\Xero\Api\EmployeeLeave;
 use XeroAPI\XeroPHP\Configuration;
 use App\Helpers\Xero as XeroHelper;
+use App\Xero\Api\User;
 use XeroAPI\XeroPHP\Api\PayrollUkApi;
 use XeroAPI\XeroPHP\Api\AccountingApi;
 
@@ -24,23 +25,27 @@ class Xero
         $accountingApi = $this->accountingApiInstance($config);
         $payrollUkApi = $this->payrollUkApiInstance($config);
         //Store Contacts
-        // (new Contacts($xeroTenantId, $accountingApi));
-        // //Store Sale invoices
-        // $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        // (new SaleInvoices($xeroTenantId, $accountingApi));
+        (new Contacts($xeroTenantId, $accountingApi));
+        //Store Sale invoices
+        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        (new SaleInvoices($xeroTenantId, $accountingApi));
         //Store Quotes
-        // $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        // (new Quotes($xeroTenantId, $accountingApi));
+        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        (new Quotes($xeroTenantId, $accountingApi));
         //Store items
-        // $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        // (new Items($xeroTenantId, $accountingApi));
+        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        (new Items($xeroTenantId, $accountingApi));
+        //Store users
+        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        (new User($xeroTenantId, $accountingApi));
+        //:::::Payroll Uk
         //Store employees
-        // $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        // (new Employee($xeroTenantId,  $payrollUkApi));
+        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        (new Employee($xeroTenantId,  $payrollUkApi));
         //Store employee leaves
-        // $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        // (new EmployeeLeave($xeroTenantId,  $payrollUkApi));
-        ////
+        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        (new EmployeeLeave($xeroTenantId,  $payrollUkApi));
+        //store Timesheets
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         (new TimeSheet($xeroTenantId,  $payrollUkApi));
 
