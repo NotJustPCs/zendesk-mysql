@@ -7,10 +7,11 @@ use App\Xero\Api\Items;
 use App\Xero\Api\Quotes;
 use App\Xero\Api\Contacts;
 use App\Xero\Api\Employee;
+use App\Xero\Api\TimeSheet;
 use App\Xero\Api\SaleInvoices;
+use App\Xero\Api\EmployeeLeave;
 use XeroAPI\XeroPHP\Configuration;
 use App\Helpers\Xero as XeroHelper;
-use App\Xero\Api\EmployeeLeave;
 use XeroAPI\XeroPHP\Api\PayrollUkApi;
 use XeroAPI\XeroPHP\Api\AccountingApi;
 
@@ -37,8 +38,11 @@ class Xero
         // $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         // (new Employee($xeroTenantId,  $payrollUkApi));
         //Store employee leaves
+        // $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        // (new EmployeeLeave($xeroTenantId,  $payrollUkApi));
+        ////
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        (new EmployeeLeave($xeroTenantId,  $payrollUkApi));
+        (new TimeSheet($xeroTenantId,  $payrollUkApi));
 
         dd('done');
     }

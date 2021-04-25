@@ -18,7 +18,7 @@ class Xero
         if (!isset($_GET['code'])) {
 
             $options = [
-                'scope' => ['openid email profile offline_access assets projects accounting.settings accounting.transactions accounting.contacts accounting.journals.read accounting.reports.read accounting.attachments payroll.employees.read']
+                'scope' => ['openid email profile offline_access assets projects accounting.settings accounting.transactions accounting.contacts accounting.journals.read accounting.reports.read accounting.attachments payroll.employees.read payroll.timesheets']
             ];
 
             // Fetch the authorization URL from the provider; this returns the urlAuthorize option and generates and applies any necessary parameters (e.g. state).
