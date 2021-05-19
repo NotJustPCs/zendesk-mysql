@@ -2,6 +2,7 @@
 
 namespace App\Xero;
 
+use App\Xero\Storage;
 use GuzzleHttp\Client;
 use App\Xero\Api\Items;
 use App\Xero\Api\Users;
@@ -13,6 +14,7 @@ use App\Xero\Api\SaleInvoices;
 use App\Xero\Api\EmployeeLeaves;
 use XeroAPI\XeroPHP\Configuration;
 use App\Helpers\Xero as XeroHelper;
+use App\Xero\Api\RepeatingInvoices;
 use XeroAPI\XeroPHP\Api\PayrollUkApi;
 use XeroAPI\XeroPHP\Api\AccountingApi;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
@@ -42,6 +44,9 @@ class Xero
         //Store users
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         (new Users($xeroTenantId, $accountingApi));
+        //store Repeating Invoices
+        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        (new RepeatingInvoices($xeroTenantId,  $accountingApi));
         //:::::Payroll Uk
         //Store employees
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);

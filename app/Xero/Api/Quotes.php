@@ -47,7 +47,6 @@ class Quotes
                 //Note: null
                 $tracking = $line_item['tracking'];
                 unset($line_item['tracking']);
-                Log::info(json_encode($tracking));
                 DB::table('xero_quote_line_items')->insert($line_item);
             }
         }
