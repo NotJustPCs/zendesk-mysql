@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Xero;
+
 use GuzzleHttp\Client;
-use App\Xero\Api\User;
 use App\Xero\Api\Items;
+use App\Xero\Api\Users;
 use App\Xero\Api\Quotes;
 use App\Xero\Api\Contacts;
-use App\Xero\Api\Employee;
-use App\Xero\Api\TimeSheet;
+use App\Xero\Api\Employees;
+use App\Xero\Api\TimeSheets;
 use App\Xero\Api\SaleInvoices;
-use App\Xero\Api\EmployeeLeave;
+use App\Xero\Api\EmployeeLeaves;
 use XeroAPI\XeroPHP\Configuration;
 use App\Helpers\Xero as XeroHelper;
 use XeroAPI\XeroPHP\Api\PayrollUkApi;
@@ -40,17 +41,17 @@ class Xero
         (new Items($xeroTenantId, $accountingApi));
         //Store users
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        (new User($xeroTenantId, $accountingApi));
+        (new Users($xeroTenantId, $accountingApi));
         //:::::Payroll Uk
         //Store employees
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        (new Employee($xeroTenantId,  $payrollUkApi));
+        (new Employees($xeroTenantId,  $payrollUkApi));
         //Store employee leaves
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        (new EmployeeLeave($xeroTenantId,  $payrollUkApi));
+        (new EmployeeLeaves($xeroTenantId,  $payrollUkApi));
         //store Timesheet
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        (new TimeSheet($xeroTenantId,  $payrollUkApi));
+        (new TimeSheets($xeroTenantId,  $payrollUkApi));
 
         dd('done');
     }

@@ -7,7 +7,7 @@ use App\Helpers\Xero;
 use Illuminate\Support\Facades\DB;
 
 
-class EmployeeLeave
+class EmployeeLeaves
 {
     private $xeroTenantId;
     private $payrollUkApi;
@@ -35,7 +35,7 @@ class EmployeeLeave
                 $periods = $leave['periods'];
                 unset($leave['periods']);
                 $this->storeEmployeeLeavePeriods($periods, $leaveId);
-                //store Employee
+                //store Employees
                 $this->storeEmployeeLeave($leave);
             }
         }

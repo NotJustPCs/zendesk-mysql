@@ -7,7 +7,7 @@ use App\Helpers\Xero;
 use Illuminate\Support\Facades\DB;
 
 
-class Employee
+class Employees
 {
     private $xeroTenantId;
     private $payrollUkApi;
@@ -33,7 +33,7 @@ class Employee
             $address = $employee['address'];
             unset($employee['address']);
             $this->storeAddress($address, $employeeId);
-            //store Employee
+            //store Employees
             $this->storeEmployee($employee);
         }
     }

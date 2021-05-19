@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 
-class User
+class Users
 {
     private $xeroTenantId;
     private $accountingApi;

@@ -82,7 +82,6 @@ class Contacts
             // store contact
             $this->storeContact($contact);
         }
-        dd('done');
     }
 
 

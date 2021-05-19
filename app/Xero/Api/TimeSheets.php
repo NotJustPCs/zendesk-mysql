@@ -5,7 +5,7 @@ namespace App\Xero\Api;
 use App\Helpers\Xero;
 use Illuminate\Support\Facades\DB;
 
-class TimeSheet
+class TimeSheets
 {
 
     private $xeroTenantId;
