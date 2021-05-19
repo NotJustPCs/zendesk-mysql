@@ -4,14 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Xero\Xero;
 use App\Xero\Storage;
-use GuzzleHttp\Client;
-use App\Xero\ClientBuilder;
-use Illuminate\Http\Request;
-use XeroAPI\XeroPHP\JWTClaims;
-use XeroAPI\XeroPHP\Configuration;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
+use XeroAPI\XeroPHP\ApiException;
 use App\Helpers\Xero as XeroHelper;
-use App\Http\Controllers\Controller;
-use XeroAPI\XeroPHP\Api\IdentityApi;
 use XeroAPI\XeroPHP\Api\AccountingApi;
 
 class XeroController extends Controller
@@ -31,11 +26,14 @@ class XeroController extends Controller
         return view('xero.index');
     }
 
-    public function authorization(Request $request)
+    public function authorization()
     {
-        (new XeroHelper())->authenticate($request);
+        (new XeroHelper())->authenticate();
     }
 
+    /**
+     * @throws ApiException
+     */
     public function callback()
     {
         $xero = new XeroHelper();
@@ -50,7 +48,7 @@ class XeroController extends Controller
             $xero->saveTokenExpiryAndTenantIdInStorage($storage, $accessToken, $result);
             $xeroTenantId = (string) request()->session()->get('oauth2.tenant_id');
             (new Xero())->storeData($storage, $xero, $xeroTenantId);
-        } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
+        } catch (IdentityProviderException $e) {
             echo "Failed!!!";
             // Failed to get the access token or user details.
             exit($e->getMessage());

@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Xero;
-
 use GuzzleHttp\Client;
+use App\Xero\Api\User;
 use App\Xero\Api\Items;
 use App\Xero\Api\Quotes;
 use App\Xero\Api\Contacts;
@@ -12,12 +12,15 @@ use App\Xero\Api\SaleInvoices;
 use App\Xero\Api\EmployeeLeave;
 use XeroAPI\XeroPHP\Configuration;
 use App\Helpers\Xero as XeroHelper;
-use App\Xero\Api\User;
 use XeroAPI\XeroPHP\Api\PayrollUkApi;
 use XeroAPI\XeroPHP\Api\AccountingApi;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 
 class Xero
 {
+    /**
+     * @throws IdentityProviderException
+     */
     public function storeData(Storage $storage, XeroHelper $xero, $xeroTenantId)
     {
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
@@ -45,13 +48,13 @@ class Xero
         //Store employee leaves
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         (new EmployeeLeave($xeroTenantId,  $payrollUkApi));
-        //store Timesheets
+        //store Timesheet
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         (new TimeSheet($xeroTenantId,  $payrollUkApi));
 
         dd('done');
     }
-    public function accountingApiInstance($config)
+    public function accountingApiInstance($config): AccountingApi
     {
         return new AccountingApi(
             new Client(),
@@ -59,9 +62,9 @@ class Xero
         );
     }
 
-    public function payrollUkApiInstance($config)
+    public function payrollUkApiInstance($config): PayrollUkApi
     {
-        return $payrollUkApi = new PayrollUkApi(
+        return new PayrollUkApi(
             new Client(),
             $config
         );

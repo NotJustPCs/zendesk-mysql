@@ -5,6 +5,7 @@ namespace App\Helpers;
 
 use App\Xero\Storage;
 use GuzzleHttp\Client;
+use League\OAuth2\Client\Provider\GenericProvider;
 use XeroAPI\XeroPHP\JWTClaims;
 use XeroAPI\XeroPHP\Configuration;
 use XeroAPI\XeroPHP\Api\IdentityApi;
@@ -40,12 +41,12 @@ class Xero
         }
     }
 
-    public function getXeroOauth2Provider()
+    public function getXeroOauth2Provider(): GenericProvider
     {
         $clientId = config('xero.client_id');
         $clientSecret = config('xero.client_secret');
         $redirectUri = config('xero.redirect_uri');
-        $provider = new \League\OAuth2\Client\Provider\GenericProvider([
+        return new GenericProvider([
             'clientId'                => $clientId,
             'clientSecret'            => $clientSecret,
             'redirectUri'             => $redirectUri,
@@ -53,8 +54,6 @@ class Xero
             'urlAccessToken'          => 'https://identity.xero.com/connect/token',
             'urlResourceOwnerDetails' => 'https://api.xero.com/api.xro/2.0/Organisation'
         ]);
-
-        return $provider;
     }
 
     public function getAccessToken($provider)
@@ -64,7 +63,7 @@ class Xero
         ]);
     }
 
-    public function getIdentityInstance($accessToken)
+    public function getIdentityInstance($accessToken): IdentityApi
     {
 
 
@@ -79,6 +78,9 @@ class Xero
         );
     }
 
+    /**
+     * @throws \League\OAuth2\Client\Provider\Exception\IdentityProviderException
+     */
     public function checkTokenHasExpiredAndRefresh(Storage $storage, $xeroTenantId)
     {
         if ($storage->getHasExpired()) {
@@ -110,7 +112,7 @@ class Xero
             $accessToken->getValues()["id_token"]
         );
     }
-    public static function deserialize($instance)
+    public static function deserialize($instance): array
     {
         $data = [];
         foreach ($instance::openAPITypes() as $property => $type) {
