@@ -17,6 +17,7 @@ use App\Helpers\Xero as XeroHelper;
 use App\Xero\Api\RepeatingInvoices;
 use XeroAPI\XeroPHP\Api\PayrollUkApi;
 use XeroAPI\XeroPHP\Api\AccountingApi;
+use App\Xero\Api\RepeatingInvoiceHistories;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 
 class Xero
@@ -47,6 +48,9 @@ class Xero
         //store Repeating Invoices
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         (new RepeatingInvoices($xeroTenantId,  $accountingApi));
+        // //store Repeating Invoices
+        // $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        // (new RepeatingInvoiceHistories($xeroTenantId,  $accountingApi));
         //:::::Payroll Uk
         //Store employees
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
@@ -76,3 +80,18 @@ class Xero
         );
     }
 }
+// Sorry to add to the list of data, but I realise I'd like to have these things, too.
+// If you don't have time, feel free to deliver the project as initially agreed and we can schedule in the rest later! If you're happy to just keep going, and send me a bill for your work when it's all done, that's fine as well.
+
+// Thanks!
+
+// I'd like these added:
+// Repeating Invoices
+// Users
+
+// I'd also like the history for:
+// Repeating Invoices
+// Items
+// Contacts
+// Invoices
+// Quotes
