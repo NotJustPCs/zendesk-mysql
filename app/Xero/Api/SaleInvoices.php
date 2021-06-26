@@ -91,15 +91,15 @@ class SaleInvoices
                 $tracking = $line_item['tracking'];
                 unset($line_item['tracking']);
                 Log::info(json_encode($tracking));
-                DB::table('xero_quote_line_items')->insert($line_item);
+                DB::table('xero_invoice_line_items')->insert($line_item);
             }
         }
     }
     private function storeLineItemTracking($tracking, $line_item_id)
     {
         //Note::null
-        // $tracking['line_item_id'] = $line_item_id;
-        // DB::table('xero_invoice_line_item_trackings')->insert($tracking);
+        $tracking['line_item_id'] = $line_item_id;
+        DB::table('xero_invoice_line_item_trackings')->insert($tracking);
     }
     private function storeLineAmountTypes($line_amount_types, $invoiceId)
     {

@@ -14,6 +14,7 @@ class EmployeeLeaves extends Migration
     public function up()
     {
         Schema::create('xero_employee_leaves', function (Blueprint $table) {
+            $table->uuid('employee_id');
             $table->uuid('leave_id')->nullable();
             $table->uuid('leave_type_id')->nullable();
             $table->string('description')->nullable();

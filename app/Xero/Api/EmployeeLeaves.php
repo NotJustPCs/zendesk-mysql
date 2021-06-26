@@ -31,20 +31,22 @@ class EmployeeLeaves
             foreach ($employeeLeaves->getLeave() as  $leaveObject) {
                 $leave = Xero::deserialize($leaveObject);
                 $leaveId = $leave['leave_id'];
+                $employeeId = $employee->employee_id;
                 //store employee address
                 $periods = $leave['periods'];
                 unset($leave['periods']);
                 $this->storeEmployeeLeavePeriods($periods, $leaveId);
                 //store Employees
-                $this->storeEmployeeLeave($leave);
+                $this->storeEmployeeLeave($leave, $employeeId);
             }
         }
     }
 
 
 
-    private function storeEmployeeLeave($leave)
+    private function storeEmployeeLeave($leave, $employeeId)
     {
+        $leave['employee_id'] = $employeeId;
         DB::table('xero_employee_leaves')->insert($leave);
     }
 
