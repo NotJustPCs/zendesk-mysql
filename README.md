@@ -22,12 +22,17 @@ Comissioned by @foshdafosh
 - [ ] [Xero](https://developer.xero.com/ "Xero Developer reference")
     - [ ] Contacts
     - [ ] Sales Invoices
+    - [x] Quotes
+    - [x] Items
+    - [x] Employee details
+    - [x] Staff Leave
+    - [x] Staff Timesheets
+    - [x] Users
+- [ ] [Xero - History and Notes](https://developer.xero.com/ "Xero Developer reference") - Ideally need a way to manually load all the notes and history for a specific ID, for these endpoints:
+    - [ ] Contacts
+    - [ ] Sales Invoices
     - [ ] Quotes
     - [ ] Items
-    - [ ] Employee details
-    - [ ] Staff Leave
-    - [ ] Staff Timesheets
-    - [ ] Users
 - [ ] Date Dimension regeneration
     - [ ] [Template](https://gist.github.com/foshdafosh/9a5242f3df0e01d4ad782bf1379eefc2 "Date Dimension Gist")
     - [ ] Use first and last dates in available data as start and end (`SELECT rng.EarliestDate, rng.LatestDate FROM dates_range AS rng;`)
