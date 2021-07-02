@@ -19,9 +19,9 @@ Comissioned by @foshdafosh
     - [X] Identities
     - [x] Organisations
     - [x] Tickets
-- [ ] [Xero](https://developer.xero.com/ "Xero Developer reference")
+- [x] [Xero](https://developer.xero.com/ "Xero Developer reference")
     - [x] Contacts
-    - [ ] Sales Invoices
+    - [x] Sales Invoices
     - [x] Quotes
     - [x] Items
     - [x] Employee details
@@ -32,6 +32,7 @@ Comissioned by @foshdafosh
     - [ ] Contacts
     - [ ] Sales Invoices
         - [ ] Online Invoice
+        - [ ] Line Items
         - [ ] Repeating Invoices
     - [ ] Quotes
     - [ ] Items
