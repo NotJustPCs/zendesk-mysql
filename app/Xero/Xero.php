@@ -12,6 +12,7 @@ use App\Xero\Api\Employees;
 use App\Xero\Api\TimeSheets;
 use App\Xero\Api\SaleInvoice;
 use App\Xero\Api\SaleInvoices;
+use App\Xero\Api\ItemHistories;
 use App\Xero\Api\EmployeeLeaves;
 use XeroAPI\XeroPHP\Configuration;
 use App\Helpers\Xero as XeroHelper;
@@ -101,8 +102,16 @@ class Xero
     {
         $config = $this->getConfig($storage, $xero, $xeroTenantId);
         $accountingApi = $this->accountingApiInstance($config);
-        //store Repeating Invoices
+        //store Repeating Invoices history
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         (new RepeatingInvoiceHistories($xeroTenantId,  $accountingApi, $invoice));
+    }
+    public function storeItemHistory(Storage $storage, XeroHelper $xero, $xeroTenantId, $item)
+    {
+        $config = $this->getConfig($storage, $xero, $xeroTenantId);
+        $accountingApi = $this->accountingApiInstance($config);
+        //store item history
+        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        (new ItemHistories($xeroTenantId,  $accountingApi, $item));
     }
 }
