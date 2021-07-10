@@ -19,18 +19,21 @@ Comissioned by @foshdafosh
     - [X] Identities
     - [x] Organisations
     - [x] Tickets
-- [ ] [Xero](https://developer.xero.com/ "Xero Developer reference")
-    - [ ] Contacts
-    - [ ] Sales Invoices
+- [x] [Xero](https://developer.xero.com/ "Xero Developer reference")
+    - [x] Contacts
+    - [x] Sales Invoices
     - [x] Quotes
     - [x] Items
     - [x] Employee details
     - [x] Staff Leave
     - [x] Staff Timesheets
     - [x] Users
-- [ ] [Xero - History and Notes](https://developer.xero.com/ "Xero Developer reference") - Ideally need a way to manually load all the notes and history for a specific ID, for these endpoints:
+- [ ] [Xero - History and Notes etc](https://developer.xero.com/ "Xero Developer reference") - Ideally need a way to manually load all the notes, history and other specific data for a specific ID, for these endpoints:
     - [ ] Contacts
     - [ ] Sales Invoices
+        - [ ] Online Invoice
+        - [ ] Line Items
+        - [ ] Repeating Invoices
     - [ ] Quotes
     - [ ] Items
 - [ ] Date Dimension regeneration
