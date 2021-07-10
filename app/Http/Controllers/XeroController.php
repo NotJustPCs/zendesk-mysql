@@ -124,6 +124,22 @@ class XeroController extends Controller
             exit($e->getMessage());
         }
     }
+
+    public function contactHistory($id)
+    {
+        try {
+            $xero = new XeroHelper();
+            $storage = new Storage();
+            $xeroTenantId = (string) request()->session()->get('oauth2.tenant_id');
+            $contact = DB::table('xero_contacts')->where('contact_id', $id)->first();
+            (new Xero())->storeContactHistory($storage, $xero, $xeroTenantId, $contact);
+            dd('contact history data has been stored');
+        } catch (IdentityProviderException $e) {
+            echo "Failed!!!";
+            // Failed to get the access token or user details.
+            exit($e->getMessage());
+        }
+    }
 }
 
 
@@ -132,7 +148,7 @@ class XeroController extends Controller
 
 // I'd also like the history for:
 // Repeating Invoices (completed)
-// Items
+// Items (completed)
 // Contacts
 // Invoices
 // Quotes

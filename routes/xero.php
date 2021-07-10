@@ -42,4 +42,7 @@ $router->group(['middleware' => 'xeroTokenExpired'], function () use ($router) {
     $router->get('/api/xero/item/{id}/history', [
         'as' => 'xero.item.history', 'uses' => 'XeroController@itemHistory'
     ]);
+    $router->get('/api/xero/contact/{id}/history', [
+        'as' => 'xero.contact.history', 'uses' => 'XeroController@contactHistory'
+    ]);
 });
