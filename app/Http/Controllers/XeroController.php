@@ -93,7 +93,7 @@ class XeroController extends Controller
         }
     }
 
-    public function repeatingInvoiceHistory($id)
+    public function storeRepeatingInvoiceHistory($id)
     {
         try {
             $xero = new XeroHelper();
@@ -109,7 +109,7 @@ class XeroController extends Controller
         }
     }
 
-    public function itemHistory($id)
+    public function storeItemHistory($id)
     {
         try {
             $xero = new XeroHelper();
@@ -125,7 +125,7 @@ class XeroController extends Controller
         }
     }
 
-    public function contactHistory($id)
+    public function storeContactHistory($id)
     {
         try {
             $xero = new XeroHelper();
@@ -134,6 +134,21 @@ class XeroController extends Controller
             $contact = DB::table('xero_contacts')->where('contact_id', $id)->first();
             (new Xero())->storeContactHistory($storage, $xero, $xeroTenantId, $contact);
             dd('contact history data has been stored');
+        } catch (IdentityProviderException $e) {
+            echo "Failed!!!";
+            // Failed to get the access token or user details.
+            exit($e->getMessage());
+        }
+    }
+    public function storeInvoiceHistory($id)
+    {
+        try {
+            $xero = new XeroHelper();
+            $storage = new Storage();
+            $xeroTenantId = (string) request()->session()->get('oauth2.tenant_id');
+            $invoice = DB::table('xero_invoices')->where('invoice_id', $id)->first();
+            (new Xero())->storeInvoiceHistory($storage, $xero, $xeroTenantId, $invoice);
+            dd('invoice history data has been stored');
         } catch (IdentityProviderException $e) {
             echo "Failed!!!";
             // Failed to get the access token or user details.
@@ -149,6 +164,6 @@ class XeroController extends Controller
 // I'd also like the history for:
 // Repeating Invoices (completed)
 // Items (completed)
-// Contacts
+// Contacts (completed)
 // Invoices
 // Quotes

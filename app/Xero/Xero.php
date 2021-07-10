@@ -15,6 +15,7 @@ use App\Xero\Api\SaleInvoices;
 use App\Xero\Api\ItemHistories;
 use App\Xero\Api\EmployeeLeaves;
 use App\Xero\Api\ContactHistories;
+use App\Xero\Api\InvoiceHistories;
 use XeroAPI\XeroPHP\Configuration;
 use App\Helpers\Xero as XeroHelper;
 use App\Xero\Api\OnlineSaleInvoice;
@@ -89,7 +90,7 @@ class Xero
         $accountingApi = $this->accountingApiInstance($config);
         //store invoice
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        (new SaleInvoice($xeroTenantId,  $accountingApi, $invoice));
+        (new SaleInvoiceLineItems($xeroTenantId,  $accountingApi, $invoice));
     }
     public function storeOnlineInvoice(Storage $storage, XeroHelper $xero, $xeroTenantId, $invoice)
     {
@@ -122,5 +123,13 @@ class Xero
         //store item history
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         (new ContactHistories($xeroTenantId,  $accountingApi, $contact));
+    }
+    public function storeInvoiceHistory(Storage $storage, XeroHelper $xero, $xeroTenantId, $contact)
+    {
+        $config = $this->getConfig($storage, $xero, $xeroTenantId);
+        $accountingApi = $this->accountingApiInstance($config);
+        //store Invoice history
+        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        (new InvoiceHistories($xeroTenantId,  $accountingApi, $contact));
     }
 }

@@ -37,12 +37,15 @@ $router->group(['middleware' => 'xeroTokenExpired'], function () use ($router) {
         'as' => 'xero.store.online.invoice', 'uses' => 'XeroController@storeOnlineInvoice'
     ]);
     $router->get('/api/xero/repeating-invoice/{id}/history', [
-        'as' => 'xero.repeating.invoice.history', 'uses' => 'XeroController@repeatingInvoiceHistory'
+        'as' => 'xero.repeating.invoice.history', 'uses' => 'XeroController@storeRepeatingInvoiceHistory'
     ]);
     $router->get('/api/xero/item/{id}/history', [
-        'as' => 'xero.item.history', 'uses' => 'XeroController@itemHistory'
+        'as' => 'xero.item.history', 'uses' => 'XeroController@storeItemHistory'
     ]);
     $router->get('/api/xero/contact/{id}/history', [
-        'as' => 'xero.contact.history', 'uses' => 'XeroController@contactHistory'
+        'as' => 'xero.contact.history', 'uses' => 'XeroController@storeContactHistory'
+    ]);
+    $router->get('/api/xero/invoice/{id}/history', [
+        'as' => 'xero.invoice.history', 'uses' => 'XeroController@storeInvoiceHistory'
     ]);
 });

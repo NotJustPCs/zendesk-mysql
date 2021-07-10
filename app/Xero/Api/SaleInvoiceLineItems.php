@@ -6,7 +6,7 @@ use App\Helpers\Xero;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class SaleInvoice
+class SaleInvoiceLineItems
 {
     private $xeroTenantId;
     private $accountingApi;
