@@ -28,7 +28,6 @@ class SaleInvoice
     {
 
         $invoiceData = ($accountingApi->getInvoice($xeroTenantId, $invoice->invoice_id))->getInvoices();
-        // dd($invoiceData);
         foreach ($invoiceData as  $invoiceObject) {
             $invoice = Xero::deserialize($invoiceObject);
             $invoiceId = $invoice['invoice_id'];

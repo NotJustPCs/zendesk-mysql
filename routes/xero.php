@@ -28,9 +28,12 @@ $router->get('/api/xero/callback', [
 $router->group(['middleware' => 'xeroTokenExpired'], function () use ($router) {
 
     $router->get('/api/xero/load-data', [
-        'as' => 'xero.load.data', 'uses' => 'XeroController@loadData'
+        'as' => 'xero.store.data', 'uses' => 'XeroController@storeData'
     ]);
     $router->get('/api/xero/invoice/{id}', [
-        'as' => 'xero.load.invoice', 'uses' => 'XeroController@loadInvoice'
+        'as' => 'xero.store.invoice', 'uses' => 'XeroController@storeInvoice'
+    ]);
+    $router->get('/api/xero/invoice/{id}/OnlineInvoice', [
+        'as' => 'xero.store.online.invoice', 'uses' => 'XeroController@storeOnlineInvoice'
     ]);
 });

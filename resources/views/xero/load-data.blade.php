@@ -15,7 +15,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <a class="btn btn-primary" href="{{ route('xero.load.data') }}">Load Data
+                <a class="btn btn-primary" href="{{ route('xero.store.data') }}">Load Data
                 </a>
             </div>
         </div>

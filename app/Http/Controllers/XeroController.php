@@ -48,7 +48,7 @@ class XeroController extends Controller
         $xero->saveTokenExpiryAndTenantIdInStorage($storage, $accessToken, $result);
         return view('xero.load-data');
     }
-    public function loadData()
+    public function storeData()
     {
         try {
             $xero = new XeroHelper();
@@ -62,7 +62,7 @@ class XeroController extends Controller
             exit($e->getMessage());
         }
     }
-    public function loadInvoice($id)
+    public function storeInvoice($id)
     {
         try {
             $xero = new XeroHelper();
@@ -71,6 +71,21 @@ class XeroController extends Controller
             $invoice = DB::table('xero_invoices')->where('invoice_id', $id)->first();
             (new Xero())->storeInvoice($storage, $xero, $xeroTenantId, $invoice);
             dd('invoice data has been stored');
+        } catch (IdentityProviderException $e) {
+            echo "Failed!!!";
+            // Failed to get the access token or user details.
+            exit($e->getMessage());
+        }
+    }
+    public function storeOnlineInvoice($id)
+    {
+        try {
+            $xero = new XeroHelper();
+            $storage = new Storage();
+            $xeroTenantId = (string) request()->session()->get('oauth2.tenant_id');
+            $invoice = DB::table('xero_invoices')->where('invoice_id', $id)->first();
+            (new Xero())->storeOnlineInvoice($storage, $xero, $xeroTenantId, $invoice);
+            dd('online invoice data has been stored');
         } catch (IdentityProviderException $e) {
             echo "Failed!!!";
             // Failed to get the access token or user details.
