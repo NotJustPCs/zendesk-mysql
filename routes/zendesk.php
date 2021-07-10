@@ -13,10 +13,6 @@
 |
 */
 
-$router->get('/key', function () {
-    return \Illuminate\Support\Str::random(32);
-});
-
-$router->get('/', function () {
-    dd('Please Enter endpoint');
-});
+$router->get('api/zendesk', [
+    'as' => 'zendesk.index', 'uses' => 'ZendeskController@index'
+]);

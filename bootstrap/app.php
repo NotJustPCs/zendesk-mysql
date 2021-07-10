@@ -78,10 +78,10 @@ $app->configure('session');
 //     App\Http\Middleware\ExampleMiddleware::class
 // ]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
-$app->bind(Illuminate\Session\SessionManager::class, function ($app) {    
+$app->routeMiddleware([
+    'xeroTokenExpired' => App\Http\Middleware\IsXeroTokenHasExpired::class,
+]);
+$app->bind(Illuminate\Session\SessionManager::class, function ($app) {
     return $app->make('session');
 });
 $app->middleware([
@@ -118,6 +118,8 @@ $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
     require __DIR__ . '/../routes/web.php';
+    require __DIR__ . '/../routes/xero.php';
+    require __DIR__ . '/../routes/zendesk.php';
 });
 
 return $app;

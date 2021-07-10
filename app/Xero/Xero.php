@@ -10,6 +10,7 @@ use App\Xero\Api\Quotes;
 use App\Xero\Api\Contacts;
 use App\Xero\Api\Employees;
 use App\Xero\Api\TimeSheets;
+use App\Xero\Api\SaleInvoice;
 use App\Xero\Api\SaleInvoices;
 use App\Xero\Api\EmployeeLeaves;
 use XeroAPI\XeroPHP\Configuration;
@@ -27,12 +28,11 @@ class Xero
      */
     public function storeData(Storage $storage, XeroHelper $xero, $xeroTenantId)
     {
-        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        $config = Configuration::getDefaultConfiguration()->setAccessToken((string)$storage->getSession()['token']);
+        $config = $this->getConfig($storage, $xero, $xeroTenantId);
         $accountingApi = $this->accountingApiInstance($config);
         $payrollUkApi = $this->payrollUkApiInstance($config);
         //Store Contacts
-        (new Contacts($xeroTenantId, $accountingApi));
+        // (new Contacts($xeroTenantId, $accountingApi));
         //Store Sale invoices
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         (new SaleInvoices($xeroTenantId, $accountingApi));
@@ -61,8 +61,11 @@ class Xero
         //store Timesheet
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         (new TimeSheets($xeroTenantId,  $payrollUkApi));
-
-        dd('done');
+    }
+    public function getConfig($storage, $xero, $xeroTenantId)
+    {
+        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        return Configuration::getDefaultConfiguration()->setAccessToken((string)$storage->getSession()['token']);
     }
     public function accountingApiInstance($config): AccountingApi
     {
@@ -78,5 +81,14 @@ class Xero
             new Client(),
             $config
         );
+    }
+    public function storeInvoice(Storage $storage, XeroHelper $xero, $xeroTenantId, $invoice)
+    {
+
+        $config = $this->getConfig($storage, $xero, $xeroTenantId);
+        $accountingApi = $this->accountingApiInstance($config);
+        //store invoice
+        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        (new SaleInvoice($xeroTenantId,  $accountingApi, $invoice));
     }
 }
