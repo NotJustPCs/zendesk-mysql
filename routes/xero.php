@@ -48,4 +48,7 @@ $router->group(['middleware' => 'xeroTokenExpired'], function () use ($router) {
     $router->get('/api/xero/invoice/{id}/history', [
         'as' => 'xero.invoice.history', 'uses' => 'XeroController@storeInvoiceHistory'
     ]);
+    $router->get('/api/xero/quote/{id}/history', [
+        'as' => 'xero.quote.history', 'uses' => 'XeroController@storeQuoteHistory'
+    ]);
 });

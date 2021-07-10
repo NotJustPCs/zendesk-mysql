@@ -155,15 +155,19 @@ class XeroController extends Controller
             exit($e->getMessage());
         }
     }
+    public function storeQuoteHistory($id)
+    {
+        try {
+            $xero = new XeroHelper();
+            $storage = new Storage();
+            $xeroTenantId = (string) request()->session()->get('oauth2.tenant_id');
+            $quote = DB::table('xero_quotes')->where('quote_id', $id)->first();
+            (new Xero())->storeQuoteHistory($storage, $xero, $xeroTenantId, $quote);
+            dd('quote history data has been stored');
+        } catch (IdentityProviderException $e) {
+            echo "Failed!!!";
+            // Failed to get the access token or user details.
+            exit($e->getMessage());
+        }
+    }
 }
-
-
-// Repeating Invoices
-// Users
-
-// I'd also like the history for:
-// Repeating Invoices (completed)
-// Items (completed)
-// Contacts (completed)
-// Invoices
-// Quotes
