@@ -33,7 +33,7 @@ class Xero
         $accountingApi = $this->accountingApiInstance($config);
         $payrollUkApi = $this->payrollUkApiInstance($config);
         //Store Contacts
-        // (new Contacts($xeroTenantId, $accountingApi));
+        (new Contacts($xeroTenantId, $accountingApi));
         //Store Sale invoices
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         (new SaleInvoices($xeroTenantId, $accountingApi));
@@ -49,9 +49,6 @@ class Xero
         //store Repeating Invoices
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         (new RepeatingInvoices($xeroTenantId,  $accountingApi));
-        // //store Repeating Invoices
-        // $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        // (new RepeatingInvoiceHistories($xeroTenantId,  $accountingApi));
         //:::::Payroll Uk
         //Store employees
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
@@ -99,5 +96,13 @@ class Xero
         //store invoice
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         (new OnlineSaleInvoice($xeroTenantId,  $accountingApi, $invoice));
+    }
+    public function storeRepeatingInvoiceHistory(Storage $storage, XeroHelper $xero, $xeroTenantId, $invoice)
+    {
+        $config = $this->getConfig($storage, $xero, $xeroTenantId);
+        $accountingApi = $this->accountingApiInstance($config);
+        //store Repeating Invoices
+        $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
+        (new RepeatingInvoiceHistories($xeroTenantId,  $accountingApi, $invoice));
     }
 }
