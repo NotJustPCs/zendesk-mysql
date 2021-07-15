@@ -101,13 +101,13 @@ class Xero
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         (new OnlineSaleInvoice($xeroTenantId,  $accountingApi, $invoice));
     }
-    public function storeRepeatingInvoiceHistory(Storage $storage, XeroHelper $xero, $xeroTenantId, $invoice)
+    public function storeRepeatingInvoiceHistory(Storage $storage, XeroHelper $xero, $xeroTenantId, $invoice, $id)
     {
         $config = $this->getConfig($storage, $xero, $xeroTenantId);
         $accountingApi = $this->accountingApiInstance($config);
         //store Repeating Invoices history
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        (new RepeatingInvoiceHistories($xeroTenantId,  $accountingApi, $invoice));
+        (new RepeatingInvoiceHistories($xeroTenantId,  $accountingApi, $invoice, $id));
     }
     public function storeItemHistory(Storage $storage, XeroHelper $xero, $xeroTenantId, $item)
     {

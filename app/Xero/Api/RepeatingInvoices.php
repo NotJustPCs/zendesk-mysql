@@ -9,10 +9,13 @@ class RepeatingInvoices
 {
     private $xeroTenantId;
     private $accountingApi;
-    public function __construct($xeroTenantId, $accountingApi)
+    private $repeating_invoice_id;
+
+    public function __construct($xeroTenantId, $accountingApi, $repeating_invoice_id = null)
     {
         $this->xeroTenantId = $xeroTenantId;
         $this->accountingApi = $accountingApi;
+        $this->repeating_invoice_id = $repeating_invoice_id;
         $this->init();
     }
 
@@ -23,7 +26,12 @@ class RepeatingInvoices
 
     public function getRepeatingInvoices($xeroTenantId, $accountingApi)
     {
-        $repeatingInvoices = ($accountingApi->getRepeatingInvoices($xeroTenantId))->getRepeatingInvoices();
+        if ($this->repeating_invoice_id == null) {
+            $repeatingInvoices = ($accountingApi->getRepeatingInvoices($xeroTenantId))->getRepeatingInvoices();
+        } else {
+            $repeatingInvoices = ($accountingApi->getRepeatingInvoice($xeroTenantId, $this->repeating_invoice_id))->getRepeatingInvoices();
+        }
+
         foreach ($repeatingInvoices as  $invoiceObject) {
             $invoice = Xero::deserialize($invoiceObject);
             $invoiceId = $invoice['id'];

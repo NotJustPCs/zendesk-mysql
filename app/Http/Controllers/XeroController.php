@@ -100,7 +100,7 @@ class XeroController extends Controller
             $storage = new Storage();
             $xeroTenantId = (string) request()->session()->get('oauth2.tenant_id');
             $invoice = DB::table('xero_invoices')->where('invoice_id', $id)->first();
-            (new Xero())->storeRepeatingInvoiceHistory($storage, $xero, $xeroTenantId, $invoice);
+            (new Xero())->storeRepeatingInvoiceHistory($storage, $xero, $xeroTenantId, $invoice, $id);
             dd('repeating invoice history data has been stored');
         } catch (IdentityProviderException $e) {
             echo "Failed!!!";
