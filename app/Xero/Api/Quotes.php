@@ -11,10 +11,12 @@ class Quotes
 {
     private $xeroTenantId;
     private $accountingApi;
-    public function __construct($xeroTenantId, $accountingApi)
+    private $quote_id;
+    public function __construct($xeroTenantId, $accountingApi, $quote_id = null)
     {
         $this->xeroTenantId = $xeroTenantId;
         $this->accountingApi = $accountingApi;
+        $this->quote_id =  $quote_id;
         $this->init();
     }
 
@@ -25,7 +27,11 @@ class Quotes
 
     public function getQuotes($xeroTenantId, $accountingApi)
     {
-        $quotes = ($accountingApi->getQuotes($xeroTenantId))->getQuotes();
+        if ($this->quote_id == null) {
+            $quotes = ($accountingApi->getQuotes($xeroTenantId))->getQuotes();
+        } else {
+            $quotes = ($accountingApi->getQuote($xeroTenantId, $this->quote_id))->getQuotes();
+        }
         foreach ($quotes as  $quoteObject) {
             $quote = Xero::deserialize($quoteObject);
             $quoteId = $quote['quote_id'];

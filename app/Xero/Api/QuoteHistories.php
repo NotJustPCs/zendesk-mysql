@@ -10,11 +10,13 @@ class QuoteHistories
     private $xeroTenantId;
     private $accountingApi;
     private $quote;
-    public function __construct($xeroTenantId, $accountingApi, $quote)
+    private $quote_id;
+    public function __construct($xeroTenantId, $accountingApi, $quote, $quote_id)
     {
         $this->xeroTenantId = $xeroTenantId;
         $this->accountingApi = $accountingApi;
         $this->quote = $quote;
+        $this->quote_id =  $quote_id;
         $this->init();
     }
 
@@ -25,6 +27,10 @@ class QuoteHistories
 
     public function getQuoteHistories($xeroTenantId, $accountingApi)
     {
+        if ($this->quote == null) {
+            (new Quotes($xeroTenantId, $accountingApi, $this->quote_id));
+            $this->quote = DB::table('xero_quotes')->where('quote_id',  $this->quote_id)->first();
+        }
         $quoteHistories = ($accountingApi->getQuoteHistory($xeroTenantId, $this->quote->quote_id))->getHistoryRecords();
         foreach ($quoteHistories as  $historyObject) {
             $quoteHistory = Xero::deserialize($historyObject);

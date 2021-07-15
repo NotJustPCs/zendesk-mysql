@@ -133,12 +133,12 @@ class Xero
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
         (new InvoiceHistories($xeroTenantId,  $accountingApi, $contact));
     }
-    public function storeQuoteHistory(Storage $storage, XeroHelper $xero, $xeroTenantId, $quote)
+    public function storeQuoteHistory(Storage $storage, XeroHelper $xero, $xeroTenantId, $quote, $id)
     {
         $config = $this->getConfig($storage, $xero, $xeroTenantId);
         $accountingApi = $this->accountingApiInstance($config);
         //store Invoice history
         $xero->checkTokenHasExpiredAndRefresh($storage, $xeroTenantId);
-        (new QuoteHistories($xeroTenantId,  $accountingApi, $quote));
+        (new QuoteHistories($xeroTenantId,  $accountingApi, $quote, $id));
     }
 }

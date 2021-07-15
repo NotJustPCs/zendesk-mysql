@@ -162,7 +162,7 @@ class XeroController extends Controller
             $storage = new Storage();
             $xeroTenantId = (string) request()->session()->get('oauth2.tenant_id');
             $quote = DB::table('xero_quotes')->where('quote_id', $id)->first();
-            (new Xero())->storeQuoteHistory($storage, $xero, $xeroTenantId, $quote);
+            (new Xero())->storeQuoteHistory($storage, $xero, $xeroTenantId, $quote, $id);
             dd('quote history data has been stored');
         } catch (IdentityProviderException $e) {
             echo "Failed!!!";
