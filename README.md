@@ -78,6 +78,7 @@ Comissioned by @foshdafosh
     - [ ] Import tables from multiple MySQL databases, adding a prefix to tables (db1_mytable, db2_thattable etc) for each database
 - [ ] Denormalise data using Views
 - [ ] Clockify - merge [original project](https://github.com/NotJustPCs/clockify-mysql) into this one
+- [ ] [eBay](https://developer.ebay.com/develop/apis)
 - [ ] Use webhooks etc to keep data up to date during the day
     - [ ] ZenDesk
     - [ ] Xero
